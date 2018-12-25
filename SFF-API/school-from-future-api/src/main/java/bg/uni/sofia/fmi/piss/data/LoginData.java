@@ -1,11 +1,13 @@
 package bg.uni.sofia.fmi.piss.data;
 
-public final class LoginData {
+import java.io.Serializable;
+
+public final class LoginData implements Serializable {
 	private String email;
 	private String pass;
 
 	public LoginData() {
-
+		super();
 	}
 
 	public LoginData(String email, String pass) {
