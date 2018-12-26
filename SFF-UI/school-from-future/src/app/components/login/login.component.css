@@ -9,7 +9,7 @@ body {
 	padding-bottom:40px;
 	padding-left:40px;
 	padding-right:40px;
-	width:400px;
+	width:420px;
 	margin-left: auto;
 	margin-right:auto;
 	border-radius:15px;
@@ -29,10 +29,16 @@ h5 {
 	font-size:18px;
     padding: 10px;
     margin:10px 15px 3px 15px;
-	border: 1px solid grey;
+	border: 2px solid #720F8F;
 	border-radius:15px;
 	background-color:#720F8F;
 	width: 200px;
+}
+
+.btn:hover {
+	color: #720F8F;
+	border: 2px solid #720F8F;
+	background-color: #F4DECB;
 }
 
 input {
@@ -50,6 +56,6 @@ label {
     display: block;
 	font-size:18px;
 	font-weight:bold;
-    padding: 15px;
+    padding: 10px;
 }
 
