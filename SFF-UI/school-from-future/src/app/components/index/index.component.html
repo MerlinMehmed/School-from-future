@@ -1,0 +1,10 @@
+<ng-template [ngIf]="!isLogged()">
+  <div style=" height: 100vh;text-align:center;">
+    <h1>School from future</h1>
+    <div><button type="button" (click)="login()">Вход</button></div>
+    <div><button type="button" (click)="register()">Регистрация</button></div>
+  </div>  
+</ng-template>
+<ng-template [ngIf]="isLogged()">
+    <div>Homepage</div>
+  </ng-template>
