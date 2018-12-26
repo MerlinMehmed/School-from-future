@@ -17,7 +17,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
     AddSubjectComponent,
     IndexComponent,
     NavBarComponent
