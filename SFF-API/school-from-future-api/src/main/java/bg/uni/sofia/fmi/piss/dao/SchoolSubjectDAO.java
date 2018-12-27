@@ -11,34 +11,17 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import bg.uni.sofia.fmi.piss.data.SchoolSubject;
 import bg.uni.sofia.fmi.piss.dto.Teacher;
 
 public class SchoolSubjectDAO {
-	private static final String SELECT_SCHOOLS = "SELECT * FROM school;";
 	private static final String SELECT_TEACHERS = "SELECT first_name, last_name, user.email FROM USER JOIN TEACHER ON USER.email = TEACHER.email"
 			+ " WHERE user.role='teacher'";
 	private static final String INSERT_SUBJECT = "INSERT INTO Subject (name, description, teacher_id) VALUES (?,?,?);";
+	private static final String SELECT_SUBJECTS_BY_TEACHER = "SELECT FROM subject where teacher_id=?;";
 
 	@Autowired
 	private DataSource dataSource;
-
-	/**
-	 * @return list of school names
-	 */
-	public List<String> getSchools() {
-		final List<String> schools = new ArrayList<>();
-		try (Connection conn = dataSource.getConnection()) {
-			final PreparedStatement ps = conn.prepareStatement(SELECT_SCHOOLS);
-			final ResultSet rs = ps.executeQuery();
-			while (rs.next()) {
-				schools.add(rs.getString("name"));
-			}
-		} catch (final SQLException e) {
-			System.out.println("SQL exception in getting schools");
-			e.printStackTrace();
-		}
-		return schools;
-	}
 
 	/**
 	 * @return list of all teachers
@@ -77,5 +60,25 @@ public class SchoolSubjectDAO {
 			System.out.println("SQL exception in inserting subject");
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * @return list of all teachers
+	 */
+	public List<SchoolSubject> getTeacherSubjects(String teacher) {
+		final List<SchoolSubject> subjects = new ArrayList<>();
+		try (Connection conn = dataSource.getConnection()) {
+			final PreparedStatement ps = conn.prepareStatement(SELECT_SUBJECTS_BY_TEACHER);
+			ps.setString(1, teacher);
+			final ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				subjects.add(new SchoolSubject(rs.getInt("id"), rs.getString("name"), rs.getString("description"),
+						rs.getString("teacher_id")));
+			}
+		} catch (final SQLException e) {
+			System.out.println("SQL exception in getting subjects");
+			e.printStackTrace();
+		}
+		return subjects;
 	}
 }

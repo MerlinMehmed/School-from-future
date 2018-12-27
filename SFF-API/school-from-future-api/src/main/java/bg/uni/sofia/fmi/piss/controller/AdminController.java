@@ -20,15 +20,6 @@ public class AdminController {
 	@Autowired
 	SchoolSubjectDAO subjectDAO;
 
-	@RequestMapping(value = "/schools", method = RequestMethod.GET, produces = { "application/xml",
-			"application/json" })
-	public ResponseEntity<List<String>> getSchools() {
-		final List<String> schools = subjectDAO.getSchools();
-		final HttpHeaders headers = new HttpHeaders();
-		headers.add("Content-Type", "application/json; charset=utf-8");
-		return new ResponseEntity<List<String>>(schools, headers, HttpStatus.OK);
-	}
-
 	@RequestMapping(value = "/teachers", method = RequestMethod.GET, produces = { "application/xml",
 			"application/json" })
 	public ResponseEntity<List<Teacher>> getTeachers() {

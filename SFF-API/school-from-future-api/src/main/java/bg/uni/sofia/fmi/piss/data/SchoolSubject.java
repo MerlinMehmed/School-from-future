@@ -3,21 +3,29 @@ package bg.uni.sofia.fmi.piss.data;
 import java.io.Serializable;
 
 public class SchoolSubject implements Serializable {
+	private int id;
 	private String name;
 	private String description;
-	private String schoolName;
 	private String teacher;
 
 	public SchoolSubject() {
 		super();
 	}
 
-	public SchoolSubject(String name, String description, String schoolName, String teacherName) {
+	public SchoolSubject(int id, String name, String description, String teacherName) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.description = description;
-		this.schoolName = schoolName;
 		teacher = teacherName;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -34,14 +42,6 @@ public class SchoolSubject implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public String getSchoolName() {
-		return schoolName;
-	}
-
-	public void setSchoolName(String schoolName) {
-		this.schoolName = schoolName;
 	}
 
 	public String getTeacher() {

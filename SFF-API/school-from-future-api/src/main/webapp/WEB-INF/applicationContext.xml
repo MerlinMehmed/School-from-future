@@ -21,5 +21,7 @@
 	<bean id="roleDAO" class="bg.uni.sofia.fmi.piss.dao.RoleDAO"/>
 	<bean id="userDAO" class="bg.uni.sofia.fmi.piss.dao.UserDAO"/>
 	<bean id="subjectDAO" class="bg.uni.sofia.fmi.piss.dao.SchoolSubjectDAO"/>
+	<bean id="studentSubjectDAO" class="bg.uni.sofia.fmi.piss.dao.StudentSubjectDAO"/>
+	<bean id="studentGradeDAO" class="bg.uni.sofia.fmi.piss.dao.StudentGradeDAO"/>
 	
 </beans>

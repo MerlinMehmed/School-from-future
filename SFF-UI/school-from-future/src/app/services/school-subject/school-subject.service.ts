@@ -12,6 +12,7 @@ export class SchoolSubjectService {
   private schoolsUrl = environment.url + '/schools';
   private teacherUrl = environment.url + '/teachers';
   private insertUrl = environment.url + '/add-subject';
+  private subjectsUrl = environment.url + '/get-subjects';
 
   constructor(private http: HttpClient) { }
 
@@ -30,5 +31,10 @@ export class SchoolSubjectService {
     }
     console.log(data);
     return this.http.post(this.insertUrl, data);
+  }
+
+  findSubjects(teacher: string): Observable<any[]> {
+    var url = this.subjectsUrl+"/"+teacher;
+    return this.http.get<any[]>(url);
   }
 }
