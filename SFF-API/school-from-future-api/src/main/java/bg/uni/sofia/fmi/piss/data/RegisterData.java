@@ -6,14 +6,15 @@ public final class RegisterData {
 	private String email;
 	private String pass;
 	private String role;
-	private String grade;
-	private String gradeNumber;
+	private int grade;
+	private int gradeNumber;
 
 	public RegisterData() {
 
 	}
 
-	public RegisterData(String firstName, String lastName, String email, String pass, String role, String grade, String gradeNumber) {
+	public RegisterData(String firstName, String lastName, String email, String pass, String role, int grade,
+			int gradeNumber) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -63,20 +64,20 @@ public final class RegisterData {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	
-	public String getGrade() {
+
+	public int getGrade() {
 		return grade;
 	}
 
-	public void setGrade(String grade) {
+	public void setGrade(int grade) {
 		this.grade = grade;
 	}
-	
-	public String getGradeNumber() {
+
+	public int getGradeNumber() {
 		return gradeNumber;
 	}
 
-	public void setGradeNumber(String gradeNumber) {
+	public void setGradeNumber(int gradeNumber) {
 		this.gradeNumber = gradeNumber;
 	}
 }

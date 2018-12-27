@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import bg.uni.sofia.fmi.piss.dao.UserDAO;
 import bg.uni.sofia.fmi.piss.data.LoginData;
+import bg.uni.sofia.fmi.piss.data.RegisterData;
 import bg.uni.sofia.fmi.piss.dto.User;
 
 @RestController
@@ -26,4 +27,12 @@ public class UserController {
 		return new ResponseEntity<User>(user, headers, HttpStatus.OK);
 	}
 
+	@RequestMapping(value = "/register", method = RequestMethod.POST, produces = { "application/xml",
+			"application/json" })
+	public ResponseEntity register(@RequestBody RegisterData data) {
+		userDAO.registerUser(data);
+		final HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Type", "application/json; charset=utf-8");
+		return new ResponseEntity<>(headers, HttpStatus.OK);
+	}
 }
