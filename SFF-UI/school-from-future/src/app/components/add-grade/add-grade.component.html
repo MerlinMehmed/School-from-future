@@ -1,0 +1,28 @@
+<body>	
+	<div id="wrapper">
+	  <h5 class="pt-3 px-3">Добави оценка</h5>
+	  <div class="p-3">
+		<form class="justify-content-center" id="add">
+		  <div class="pb-1">
+      <label for="subjectName">Учебен предмет </label>
+      <select [(ngModel)]="subject" name="subjectName" (change)="getStudents()">
+			  <option *ngFor="let s of subjects" [ngValue]="s.id">{{s.name}}</option>
+			</select>
+		  <div class="pb-1">
+			<label for="studentName">Ученик </label>
+			<select [(ngModel)]="student" name="studentName">
+			  <option *ngFor="let s of students" [ngValue]="s.email">{{s.firstName}} {{s.lastName}}, {{s.grade}} клас, {{s.gradeNumber}} номер</option>
+			</select>
+		  </div>
+		  <div class="pb-1">
+			<label for="teacher">Оценка </label>
+			<input type="number" ngModel pattern="[1-6]" class="form-control" name="sGrade" id="sGrade" [(ngModel)]="grade" #subjectName="ngModel"
+			  required>
+		  </div> 
+		  </div>
+		  <button (click)="add();" class="btn btn-outline-info btn-primary">Добави</button>
+		  <button (click)="routeToIndex()" class="btn btn-outline-info btn-primary" name="cancel">Отказ</button>
+		</form>
+	  </div>
+	</div>
+</body>

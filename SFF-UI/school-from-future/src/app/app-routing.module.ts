@@ -5,6 +5,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { AppComponent } from './components/app/app.component';
 import { AddSubjectComponent } from './components/add-subject/add-subject.component';
 import { IndexComponent } from './components/index/index.component';
+import { AddGradeComponent } from './components/add-grade/add-grade.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,9 @@ const routes: Routes = [
   }, {
     path: 'add-subject',
     component: AddSubjectComponent
+  }, {
+    path: 'grade-student',
+    component: AddGradeComponent
   }];
 
 

@@ -18,7 +18,7 @@ public class SchoolSubjectDAO {
 	private static final String SELECT_TEACHERS = "SELECT first_name, last_name, user.email FROM USER JOIN TEACHER ON USER.email = TEACHER.email"
 			+ " WHERE user.role='teacher'";
 	private static final String INSERT_SUBJECT = "INSERT INTO Subject (name, description, teacher_id) VALUES (?,?,?);";
-	private static final String SELECT_SUBJECTS_BY_TEACHER = "SELECT FROM subject where teacher_id=?;";
+	private static final String SELECT_SUBJECTS_BY_TEACHER = "SELECT * FROM subject where teacher_id=?;";
 
 	@Autowired
 	private DataSource dataSource;

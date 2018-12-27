@@ -1,18 +1,14 @@
 package bg.uni.sofia.fmi.piss.dto;
 
-import java.io.Serializable;
-
-public class Teacher implements Serializable {
+public class Teacher {
 	private String email;
 	private String firstName;
 	private String lastName;
 
 	Teacher() {
-		super();
 	}
 
 	public Teacher(String email, String first_name, String last_name) {
-		super();
 		this.email = email;
 		firstName = first_name;
 		lastName = last_name;

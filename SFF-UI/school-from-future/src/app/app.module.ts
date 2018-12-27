@@ -10,6 +10,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { AddSubjectComponent } from './components/add-subject/add-subject.component';
 import { IndexComponent } from './components/index/index.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { AddGradeComponent } from './components/add-grade/add-grade.component';
 
 
 
@@ -20,7 +21,8 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     RegisterComponent,
     AddSubjectComponent,
     IndexComponent,
-    NavBarComponent
+    NavBarComponent,
+    AddGradeComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,6 @@
 package bg.uni.sofia.fmi.piss.dto;
 
-public final class User {
+public class User {
 	private String firstName;
 	private String lastName;
 	private String email;

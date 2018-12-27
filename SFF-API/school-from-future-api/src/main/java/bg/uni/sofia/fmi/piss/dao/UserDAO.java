@@ -10,11 +10,13 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import bg.uni.sofia.fmi.piss.data.RegisterData;
+import bg.uni.sofia.fmi.piss.dto.Student;
 import bg.uni.sofia.fmi.piss.dto.User;
 
 public class UserDAO {
 	private static final String FIND_USER = "SELECT * FROM USER WHERE email=? AND pass=?";
 	private static final String FIND_USER_DATA = "SELECT * FROM USER WHERE email=?";
+	private static final String FIND_STUDENT_DATA = "SELECT * FROM USER JOIN STUDENT ON USER.email = STUDENT.email WHERE user.email=?";
 	private static final String INSERT_USER = "INSERT INTO user(email, first_name, last_name, pass, role) VALUES(?,?,?,?,?);";
 	private static final String INSERT_STUDENT = "INSERT INTO student(email, class, class_number) VALUES(?,?,?);";
 	private static final String INSERT_ADMIN = "INSERT INTO admin(email) VALUES(?);";
@@ -63,6 +65,24 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 		return user;
+	}
+
+	public Student getStudentData(String email) {
+		Student student = null;
+		try (Connection conn = dataSource.getConnection()) {
+			final PreparedStatement ps = conn.prepareStatement(FIND_STUDENT_DATA);
+			ps.setString(1, email);
+			final ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				student = new Student(rs.getString("user.first_name"), rs.getString("user.last_name"),
+						rs.getString("user.email"), "", rs.getString("user.role"), rs.getInt("student.class"),
+						rs.getInt("student.class_number"));
+			}
+		} catch (final SQLException e) {
+			System.out.println("SQL exception in getting student data");
+			e.printStackTrace();
+		}
+		return student;
 	}
 
 	public void registerUser(RegisterData data) {

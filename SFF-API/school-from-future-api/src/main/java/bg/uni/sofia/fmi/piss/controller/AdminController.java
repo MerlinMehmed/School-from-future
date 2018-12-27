@@ -21,7 +21,7 @@ public class AdminController {
 	SchoolSubjectDAO subjectDAO;
 
 	@RequestMapping(value = "/teachers", method = RequestMethod.GET, produces = { "application/xml",
-			"application/json" })
+			"application/json" }, headers = "Accept=application/json")
 	public ResponseEntity<List<Teacher>> getTeachers() {
 		final List<Teacher> teachers = subjectDAO.getTeachers();
 		final HttpHeaders headers = new HttpHeaders();

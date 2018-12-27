@@ -33,8 +33,9 @@ export class SchoolSubjectService {
     return this.http.post(this.insertUrl, data);
   }
 
-  findSubjects(teacher: string): Observable<any[]> {
-    var url = this.subjectsUrl+"/"+teacher;
+  findSubjects(teacher: string, email:string): Observable<any[]> {
+    var url = this.subjectsUrl+"/"+teacher.toString()+"/"+email;
+    console.log(url);
     return this.http.get<any[]>(url);
   }
 }

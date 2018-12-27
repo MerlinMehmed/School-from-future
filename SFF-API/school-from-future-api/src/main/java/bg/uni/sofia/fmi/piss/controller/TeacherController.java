@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import bg.uni.sofia.fmi.piss.dao.SchoolSubjectDAO;
@@ -18,7 +19,7 @@ import bg.uni.sofia.fmi.piss.dao.StudentSubjectDAO;
 import bg.uni.sofia.fmi.piss.dao.UserDAO;
 import bg.uni.sofia.fmi.piss.data.SchoolSubject;
 import bg.uni.sofia.fmi.piss.data.StudentGrade;
-import bg.uni.sofia.fmi.piss.dto.User;
+import bg.uni.sofia.fmi.piss.dto.Student;
 
 @RestController
 public class TeacherController {
@@ -34,22 +35,30 @@ public class TeacherController {
 	@Autowired
 	UserDAO userDAO;
 
-	@RequestMapping(value = "/get-subjects/{teacher}", method = RequestMethod.GET, produces = { "application/xml",
-			"application/json" })
-	public ResponseEntity<List<SchoolSubject>> getSubjects(@RequestParam String teacher) {
-		final List<SchoolSubject> subjects = subjectDAO.getTeacherSubjects(teacher);
-		return new ResponseEntity<List<SchoolSubject>>(subjects, HttpStatus.OK);
+	@RequestMapping(value = "/get-subjects/{teacher}/{email}", method = RequestMethod.GET, produces = {
+			"application/xml", "application/json" })
+	public ResponseEntity<List<SchoolSubject>> getSubjects(
+			@PathVariable(name = "teacher", required = true) String teacher,
+			@PathVariable(name = "email", required = true) String email) {
+		email = email.replace(',', '.');
+		System.out.println("teacher " + teacher);
+		System.out.println("teacher " + email);
+
+		final List<SchoolSubject> subjects = subjectDAO.getTeacherSubjects(teacher.concat("@").concat(email));
+		final HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Type", "application/json; charset=utf-8");
+		return new ResponseEntity<List<SchoolSubject>>(subjects, headers, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/get-students/{subject}", method = RequestMethod.GET, produces = { "application/xml",
 			"application/json" })
-	public ResponseEntity<List<User>> getStudents(@RequestParam int subject) {
+	public ResponseEntity<List<Student>> getStudents(@PathVariable int subject) {
 		final List<String> studentsEmails = studentSubjectDAO.getStudents(subject);
-		final List<User> students = new ArrayList<>();
+		final List<Student> students = new ArrayList<>();
 		for (final String student : studentsEmails) {
-			students.add(userDAO.getUserData(student));
+			students.add(userDAO.getStudentData(student));
 		}
-		return new ResponseEntity<List<User>>(students, HttpStatus.OK);
+		return new ResponseEntity<List<Student>>(students, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/add-grade", method = RequestMethod.POST)
