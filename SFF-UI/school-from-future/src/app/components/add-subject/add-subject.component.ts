@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SchoolSubjectService } from 'src/app/services/school-subject/school-subject.service';
 
 @Component({
