@@ -1,0 +1,21 @@
+.navbar {
+	background-color:#720F8F;
+}
+
+.nav-link {
+	color: white;
+	font-size: 18px;
+}
+
+nav {
+	padding:0;
+}
+
+img {
+	padding-left:10px;
+}
+
+#logo {
+	text-align:center;
+	background-color:#F8EEE7;
+}
