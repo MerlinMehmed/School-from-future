@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { AgmCoreModule } from '@agm/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './components/app/app.component';
@@ -11,6 +12,7 @@ import { AddSubjectComponent } from './components/add-subject/add-subject.compon
 import { IndexComponent } from './components/index/index.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { AddGradeComponent } from './components/add-grade/add-grade.component';
+import { EventComponent } from './components/event/event.component';
 
 
 
@@ -22,13 +24,17 @@ import { AddGradeComponent } from './components/add-grade/add-grade.component';
     AddSubjectComponent,
     IndexComponent,
     NavBarComponent,
-    AddGradeComponent
+    AddGradeComponent,
+    EventComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: ''
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

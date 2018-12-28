@@ -170,10 +170,12 @@ ENGINE = InnoDB;
 
 
 CREATE TABLE IF NOT EXISTS `school_from_future`.`Event` (
+  `event_id` INT AUTO_INCREMENT,
   `subject_id` INT UNSIGNED NOT NULL,
-  `date` TIMESTAMP NOT NULL,
-  `location` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`subject_id`),
+  `date` BIGINT NOT NULL,
+  `latitude` DOUBLE(19,15) NOT NULL,
+  `longitude` DOUBLE(19,15) NOT NULL,
+  PRIMARY KEY (`event_id`),
   CONSTRAINT `event_subject_id`
     FOREIGN KEY (`subject_id`)
     REFERENCES `school_from_future`.`Subject` (`id`)

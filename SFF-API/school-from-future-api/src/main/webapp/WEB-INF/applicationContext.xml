@@ -23,5 +23,6 @@
 	<bean id="subjectDAO" class="bg.uni.sofia.fmi.piss.dao.SchoolSubjectDAO"/>
 	<bean id="studentSubjectDAO" class="bg.uni.sofia.fmi.piss.dao.StudentSubjectDAO"/>
 	<bean id="studentGradeDAO" class="bg.uni.sofia.fmi.piss.dao.StudentGradeDAO"/>
+	<bean id="eventDAO" class="bg.uni.sofia.fmi.piss.dao.EventDAO"/>
 	
 </beans>
