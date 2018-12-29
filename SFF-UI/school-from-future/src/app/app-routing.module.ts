@@ -7,6 +7,7 @@ import { AddSubjectComponent } from './components/add-subject/add-subject.compon
 import { IndexComponent } from './components/index/index.component';
 import { AddGradeComponent } from './components/add-grade/add-grade.component';
 import { EventComponent } from './components/event/event.component';
+import { StudentProfileComponent } from './components/student-profile/student-profile.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,9 @@ const routes: Routes = [
   }, {
     path: 'event',
     component: EventComponent
+  }, {
+    path: 'student-profile',
+    component: StudentProfileComponent
   }];
 
 

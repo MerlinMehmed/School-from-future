@@ -1,0 +1,47 @@
+<body>	
+	<div id="wrapper">
+	  <h5 class="pt-3 px-3"><img src="http://pngimages.net/sites/default/files/student-png-image-64772.png">Личен профил</h5>
+	  <div class="p-3">
+		<form class="justify-content-center" id="add">
+		  <div class="pb-1">
+			<label for="studentName">Име</label>
+			<p>{{studentName}}</p>
+		  </div>
+		  <div class="pb-1">
+			<label for="studentEmail">Email</label>
+			<p>{{studentEmail}}</p>
+		  </div>
+		  <div class="pb-1">
+			<label for="studentGrade">Клас</label>
+			<p>{{studentGrade}}</p>
+		  </div>
+		  <div class="pb-1">
+			<label for="studentGradeNumber">Номер в клас</label>
+			<p>{{studentGradeNumber}}</p>
+		  </div>
+		  <div class="pb-1">
+      <label for="subjectName">Учебен предмет </label>
+      <select [(ngModel)]="subject" name="subjectName">
+			  <option *ngFor="let s of subjects" [ngValue]="s.id">{{s.name}}</option>
+			</select>
+		  <div class="pb-1">
+			<label for="grades">Оценки </label>
+			<select [(ngModel)]="grade" name="Grades">
+			  <option *ngFor="let g of grades" [ngValue]="g.id">{{g.grade}}</option>
+			</select>
+		  </div>
+		  <div class="pb-1">
+			<label for="absences">Отсъствия </label>
+			<p>{{absences}}</p>
+		  </div> 
+		  <div class="pb-1">
+			<label for="notes">Забележки </label>
+			<select [(ngModel)]="note" name="Notes">
+			  <option *ngFor="let n of notes" [ngValue]="n.id">{{n.description}}</option>
+			</select>
+		  </div> 		  
+		  </div>
+		</form>
+	  </div>
+	</div>
+</body>

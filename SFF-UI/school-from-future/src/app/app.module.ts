@@ -13,6 +13,7 @@ import { IndexComponent } from './components/index/index.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { AddGradeComponent } from './components/add-grade/add-grade.component';
 import { EventComponent } from './components/event/event.component';
+import { StudentProfileComponent } from './components/student-profile/student-profile.component';
 
 
 
@@ -25,7 +26,8 @@ import { EventComponent } from './components/event/event.component';
     IndexComponent,
     NavBarComponent,
     AddGradeComponent,
-    EventComponent
+    EventComponent,
+	StudentProfileComponent
   ],
   imports: [
     BrowserModule,
