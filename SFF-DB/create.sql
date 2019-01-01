@@ -119,7 +119,6 @@ CREATE TABLE IF NOT EXISTS `school_from_future`.`student_note` (
   `student_id` VARCHAR(50) NOT NULL,
   `description` VARCHAR(45) NULL,
   `subject_id` INT UNSIGNED NOT NULL,
-  PRIMARY KEY (`student_id`, `subject_id`),
   CONSTRAINT `note_student_id`
     FOREIGN KEY (`student_id`)
     REFERENCES `school_from_future`.`Student_subject` (`student_id`)
@@ -137,7 +136,6 @@ CREATE TABLE IF NOT EXISTS `school_from_future`.`student_absence` (
   `student_id` VARCHAR(50) NOT NULL,
   `count` DECIMAL(3,2) NULL,
   `subject_id` INT UNSIGNED NOT NULL,
-  PRIMARY KEY (`student_id`, `subject_id`),
   CONSTRAINT `absence_student_id`
     FOREIGN KEY (`student_id`)
     REFERENCES `school_from_future`.`Student_subject` (`student_id`)
@@ -155,8 +153,7 @@ CREATE TABLE IF NOT EXISTS `school_from_future`.`student_grade` (
   `student_id` VARCHAR(50) NOT NULL,
   `subject_id` INT UNSIGNED NOT NULL,
   `grade` INT UNSIGNED NULL,
-  PRIMARY KEY (`student_id`, `subject_id`),
-    CONSTRAINT `grade_student_id`
+  CONSTRAINT `grade_student_id`
     FOREIGN KEY (`student_id`)
     REFERENCES `school_from_future`.`Student_subject` (`student_id`)
     ON DELETE CASCADE

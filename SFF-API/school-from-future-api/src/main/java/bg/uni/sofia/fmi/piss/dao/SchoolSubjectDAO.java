@@ -76,7 +76,7 @@ public class SchoolSubjectDAO {
 						rs.getString("teacher_id")));
 			}
 		} catch (final SQLException e) {
-			System.out.println("SQL exception in getting subjects");
+			System.out.println("SQL exception in getting student subjects");
 			e.printStackTrace();
 		}
 		return subjects;

@@ -31,3 +31,7 @@ INSERT INTO Student (email, class, class_number) VALUES ('mira@gmail.com', 10, 1
 INSERT INTO Subject (name, teacher_id, description) VALUES ('Математика', 'vera@gmail.com', 'Математика за 10 клас');
 
 INSERT INTO Student_Subject (student_id, subject_id) VALUES ('mira@gmail.com', 1);
+
+INSERT INTO Student_grade (student_id, subject_id, grade) VALUES ('mira@gmail.com', 1, 6);
+
+INSERT INTO Student_grade (student_id, subject_id, grade) VALUES ('mira@gmail.com', 1, 5);

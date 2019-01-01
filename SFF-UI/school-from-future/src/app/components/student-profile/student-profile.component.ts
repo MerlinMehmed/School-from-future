@@ -11,9 +11,10 @@ export class StudentProfileComponent implements OnInit {
 	
   subjects: string[];
   notes: string [];
-  absences: number;
+  absences: number = -1;
   grades: number[];
-  subject: string;
+  subject: number;
+  // subjectId:number;
   student: any;
   studentName: string;
   studentEmail: string;
@@ -26,12 +27,19 @@ export class StudentProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getStudentName();
+    this.getStudentEmail();
+    this.getGradeData();
 	this.getStudentSubjects();
-	this.getStudentAbsences();
-	this.getStudentGrades();
-	this.getStudentNotes();
+
   }
   
+  getData() {
+    this.getStudentAbsences();
+    this.getStudentGrades();
+    this.getStudentNotes();
+  }
+
   getStudentName() {
      this.studentName = JSON.parse(sessionStorage.getItem('user')).firstName + " " + JSON.parse(sessionStorage.getItem('user')).lastName;
   }
@@ -40,6 +48,17 @@ export class StudentProfileComponent implements OnInit {
      this.studentEmail = JSON.parse(sessionStorage.getItem('user')).email;
   }
   
+  getGradeData() {
+    this.student = JSON.parse(sessionStorage.getItem('user')).email;
+    let t = this.student.split("@");
+    let name = t[0];
+    let email = t[1].replace(/\./g, ",");
+    this.getStudentDataService.findGradeData(name, email).subscribe(result => {
+      this.studentGrade = result.grade;
+      this.studentGradeNumber = result.gradeNumber;
+    });
+  }
+
   getStudentGrade() {
      this.studentGrade = JSON.parse(sessionStorage.getItem('user')).grade;
   }
