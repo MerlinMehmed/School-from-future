@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatCheckboxModule, MatIconModule, MatListModule, MatFormFieldModule, MatCardModule, MatInputModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './components/app/app.component';
@@ -13,8 +15,7 @@ import { IndexComponent } from './components/index/index.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { AddGradeComponent } from './components/add-grade/add-grade.component';
 import { EventComponent } from './components/event/event.component';
-
-
+import { ChatComponent } from './components/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { EventComponent } from './components/event/event.component';
     IndexComponent,
     NavBarComponent,
     AddGradeComponent,
-    EventComponent
+    EventComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +37,14 @@ import { EventComponent } from './components/event/event.component';
     AgmCoreModule.forRoot({
       apiKey: ''
     }),
+    BrowserAnimationsModule,
+    MatButtonModule, 
+    MatCheckboxModule,
+    MatIconModule,
+    MatListModule,
+    MatFormFieldModule,
+    MatCardModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
