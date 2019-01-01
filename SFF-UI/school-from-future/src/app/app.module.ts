@@ -16,6 +16,10 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { AddGradeComponent } from './components/add-grade/add-grade.component';
 import { EventComponent } from './components/event/event.component';
 import { ChatComponent } from './components/chat/chat.component';
+import { StudentProfileComponent } from './components/student-profile/student-profile.component';
+import { AllSubjectsComponent } from './components/all-subjects/all-subjects.component';
+
+
 
 @NgModule({
   declarations: [
@@ -27,7 +31,9 @@ import { ChatComponent } from './components/chat/chat.component';
     NavBarComponent,
     AddGradeComponent,
     EventComponent,
-    ChatComponent
+    ChatComponent,
+    StudentProfileComponent,
+    AllSubjectsComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +44,7 @@ import { ChatComponent } from './components/chat/chat.component';
       apiKey: ''
     }),
     BrowserAnimationsModule,
-    MatButtonModule, 
+    MatButtonModule,
     MatCheckboxModule,
     MatIconModule,
     MatListModule,

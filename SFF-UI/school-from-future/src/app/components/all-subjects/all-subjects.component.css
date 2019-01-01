@@ -6,10 +6,10 @@ body {
 #wrapper {	
 	font-family: Arial;
 	border:1px solid grey;
-	padding-bottom:40px;
+	padding-bottom:15px;
 	padding-left:40px;
 	padding-right:40px;
-	width:550px;
+	width:600px;
 	margin-left: auto;
 	margin-right:auto;
 	border-radius:15px;
@@ -45,22 +45,25 @@ input {
 	display: block;
 	padding:5px;
     margin : 0 auto;
-	width: 410px;
+	width: 360px;
 	height:40px;
 	background-color:#F8EEE7;
 	border:1px solid grey;
 	border-radius:5px;
 }
 
-select {
+select, p {
 	display: block;
 	padding:5px;
-    margin : 0 auto;
-	width: 410px;
 	height:40px;
+	width:480px;
 	background-color:#F8EEE7;
 	border:1px solid grey;
 	border-radius:5px;
+}
+
+select {
+	margin-bottom:15px;
 }
 
 option {

@@ -21,6 +21,18 @@ export class SchoolSubjectService {
     console.log(url);
     return this.http.get<string[]>(url);
   }
+  
+  getSubjectTeacher(subject: string): Observable<string> {
+    var url = this.teacherUrl;
+    console.log(url);
+    return this.http.get<string>(url);
+  }
+  
+  getSubjectDescription(subject: string): Observable<string> {
+    var url = this.subjectsUrl+"/"+subject.toString();
+    console.log(url);
+    return this.http.get<string>(url);
+  }
 
   addSubject(name: string, descirption: string, teacher: string, school: string) {
     var data = {
@@ -38,4 +50,16 @@ export class SchoolSubjectService {
     console.log(url);
     return this.http.get<any[]>(url);
   }
-}
+  
+  findAllSubjects(): Observable<any[]> {
+    var url = this.subjectsUrl;
+    console.log(url);
+    return this.http.get<any[]>(url);
+  }
+  
+  deleteSubject (name: string): Observable<{}> {
+	var url = this.subjectsUrl+"/"+name.toString();
+    console.log(url);
+    return this.http.delete(url);
+  }
+ }
