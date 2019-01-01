@@ -6,44 +6,121 @@
     z-index: 1;
 }
 
-.chat-container {
-    position: fixed;
-    width: 100%; 
-    height: 100%;  
+body {
+	background-color: #F4DECB;	
+	padding:20px;
 }
 
-.chat-input {
-    padding-top: 20px;
-    width: 80%; 
+h3 {
+	margin-top: 10px;
+	margin-bottom: 20px;
+	font-size: 44px;
+}
+
+.chat-container {
+	border:1px solid grey;
+	border-radius:15px;
+	background-color: white;
+	overflow: auto;
+}
+
+.contacts_heading {
+	color: white;
+	text-align:center;
+	padding-bottom:5px;
+	padding-top:10px;
+	margin-bottom:20px;
+	border:1px solid grey;
+	width:380px;
+	border-radius:15px;
+	background-color:#720F8F;
+}
+
+.contacts {
+   	font-family: Arial;
+	border:1px solid grey;
+	padding-top:20px;
+	padding-bottom:20px;
+	padding-left:20px;
+	padding-right:20px;
+	width:420px;
+	border-radius:15px;
+	background-color:#F8EEE7;
+	margin-left: 20px;
+	margin-bottom: 20px;
+	float: left;
+
+}
+
+h5{
+	display: inline-block;
+}
+
+.messages-container {
+	border:1px solid grey;
+	border-radius:15px;
+	background-color: white;
+	margin: 0 0 20px 465px;
+	width: 840px;	
 }
 
 .chat-list {
-    overflow: auto;
-    position: fixed;
-    top: 90px;
-    left: 25px;
-    right: 25px;
-    bottom: 120px;
+	margin:20px 20px 20px 0px;
 }
 
-.chat-list-item {
-    margin-top: 2px;
-    margin-bottom: 2px;
-    border-radius: 5px;
-    background-color: #E8EAF6;
+.chat-list-item, li {
+	margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+	border:1px solid grey;
+	list-style-type:none;
+	padding: 10px;
+	width: 760px;
+    background-color: #F4DECB;
 }
 
-.main-card {
-    height: 100%;  
-}
 
 .chat-footer-container {
-    position:fixed;
-    bottom:25px;
-    left:25px;
-    right:25px;
+	margin:20px;
 }
 
 .chat-notification {
     text-align: center;
+}
+
+img {
+	width:20%;
+	padding-right: 20px;
+	padding-bottom:10px;
+}
+
+#chat-logo {
+	width: 7%
+}
+
+input {
+	width: 680px;
+	height:50px;
+	padding-left: 15px;
+	background-color:#F8EEE7;
+	border:1px solid grey;
+	border-radius:15px;
+}
+
+button {
+	color: white;
+	font-size:20px;
+    padding-top: 7px;
+	padding-bottom: 9px;
+	margin-left: 10px;
+	border: 2px solid #720F8F;
+	border-radius:15px;
+	background-color:#720F8F;
+	width: 105px;
+}
+
+hr {
+    height: 12px;
+    border: 0;
+    box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);
 }
