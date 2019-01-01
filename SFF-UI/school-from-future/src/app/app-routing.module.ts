@@ -9,6 +9,7 @@ import { AddGradeComponent } from './components/add-grade/add-grade.component';
 import { EventComponent } from './components/event/event.component';
 import { StudentProfileComponent } from './components/student-profile/student-profile.component';
 import { AllSubjectsComponent } from './components/all-subjects/all-subjects.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 const routes: Routes = [
   {
@@ -39,6 +40,9 @@ const routes: Routes = [
   }, {
     path: 'all-subjects',
     component: AllSubjectsComponent
+  }, {
+    path: 'chat',
+    component: ChatComponent
   }];
 
 
