@@ -1,24 +1,29 @@
-<body>	
-	<div id="wrapper">
-	  <h5 class="pt-3 px-3">Всички учебни предмети</h5>
-	  <div class="p-3">
-		<form class="justify-content-center" id="all-subjects">
-			<div class="pb-1">
-			  <label for="subjectName">Име </label>
-			  <select [(ngModel)]="subject" name="subjectName" ng-change="getSubjectTeacher()">
-			  <option *ngFor="let s of subjects" [ngValue]="s.id">{{s.name}}</option>
-			</select> </div>
-		  <div class="pb-1">
-			<label for="subjectDescription">Описание </label>
-			<p>{{description}}</p>
-		  </div>
-		  <div class="pb-1">
-			<label for="teacher">Преподавател </label>
-			<p>{{teacherName}}</p>
-		  </div>
-		  <button (click)="deleteSubject()" class="btn btn-outline-info btn-primary">Изтрий</button>
-		  <button (click)="routeToIndex()" class="btn btn-outline-info btn-primary" name="back">Назад</button>
-		</form>
-	  </div>
-	</div>
-</body>
+<h5 class="pt-3 px-3">Всички учебни предмети</h5>
+<div class="p-3">
+	<table>
+		<tr>
+			<th>
+				Предмет
+			</th>
+			<th>
+				Описание
+			</th>
+			<th>
+				Преподавател
+			</th>
+			<th>
+				Изтриване
+			</th>
+		</tr>
+		<tr *ngFor="let subject of subjects">
+			<td>{{subject.name}}</td>
+			<td>{{subject.description}}</td>
+			<td>{{subject.teacher}}</td>
+			<td>
+				<button type="button" (click)="deleteSubject(subject.id)">
+          <i class="fa fa-trash" aria-hidden="true"></i> 
+        </button>
+			</td>
+		</tr>
+	</table>
+</div>

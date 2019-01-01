@@ -32,7 +32,21 @@ public class AdminController {
 	@RequestMapping(value = "/add-subject", method = RequestMethod.POST, produces = { "application/xml",
 			"application/json" })
 	public void addSubject(@RequestBody SchoolSubject data) {
-		System.out.println(data.getName());
 		subjectDAO.insertSubject(data.getName(), data.getDescription(), data.getTeacher());
+	}
+
+	@RequestMapping(value = "/all-subjects", method = RequestMethod.GET, produces = { "application/xml",
+			"application/json" })
+	public ResponseEntity<List<SchoolSubject>> getAllSubjects() {
+		final List<SchoolSubject> subjects = subjectDAO.getSubjects();
+		final HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Type", "application/json; charset=utf-8");
+		return new ResponseEntity<List<SchoolSubject>>(subjects, headers, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/delete-subject", method = RequestMethod.PUT, produces = { "application/xml",
+			"application/json" })
+	public void deleteSubject(@RequestBody int subject) {
+		subjectDAO.deleteSubject(subject);
 	}
 }

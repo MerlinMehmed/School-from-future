@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule, MatIconModule, MatListModule, MatFormFieldModule, MatCardModule, MatInputModule } from '@angular/material';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './components/app/app.component';
@@ -18,8 +19,6 @@ import { EventComponent } from './components/event/event.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { StudentProfileComponent } from './components/student-profile/student-profile.component';
 import { AllSubjectsComponent } from './components/all-subjects/all-subjects.component';
-
-
 
 @NgModule({
   declarations: [
@@ -50,7 +49,8 @@ import { AllSubjectsComponent } from './components/all-subjects/all-subjects.com
     MatListModule,
     MatFormFieldModule,
     MatCardModule,
-    MatInputModule
+    MatInputModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

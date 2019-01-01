@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { headersToString } from 'selenium-webdriver/http';
+import { Subject } from 'src/app/model/Subject';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,8 @@ export class SchoolSubjectService {
   private teacherUrl = environment.url + '/teachers';
   private insertUrl = environment.url + '/add-subject';
   private subjectsUrl = environment.url + '/get-subjects';
+  private allSubjectsUrl = environment.url + '/all-subjects';
+  private removeSubjectUrl = environment.url + '/delete-subject';
 
   constructor(private http: HttpClient) { }
 
@@ -21,15 +24,15 @@ export class SchoolSubjectService {
     console.log(url);
     return this.http.get<string[]>(url);
   }
-  
+
   getSubjectTeacher(subject: string): Observable<string> {
     var url = this.teacherUrl;
     console.log(url);
     return this.http.get<string>(url);
   }
-  
+
   getSubjectDescription(subject: string): Observable<string> {
-    var url = this.subjectsUrl+"/"+subject.toString();
+    var url = this.subjectsUrl + "/" + subject.toString();
     console.log(url);
     return this.http.get<string>(url);
   }
@@ -45,21 +48,18 @@ export class SchoolSubjectService {
     return this.http.post(this.insertUrl, data);
   }
 
-  findSubjects(teacher: string, email:string): Observable<any[]> {
-    var url = this.subjectsUrl+"/"+teacher.toString()+"/"+email;
+  findSubjects(teacher: string, email: string): Observable<any[]> {
+    var url = this.subjectsUrl + "/" + teacher.toString() + "/" + email;
     console.log(url);
     return this.http.get<any[]>(url);
   }
-  
-  findAllSubjects(): Observable<any[]> {
-    var url = this.subjectsUrl;
-    console.log(url);
-    return this.http.get<any[]>(url);
+
+  findAllSubjects(): Observable<Subject[]> {
+    console.log(this.allSubjectsUrl);
+    return this.http.get<any[]>(this.allSubjectsUrl);
   }
-  
-  deleteSubject (name: string): Observable<{}> {
-	var url = this.subjectsUrl+"/"+name.toString();
-    console.log(url);
-    return this.http.delete(url);
+
+  deleteSubject(subject: number): Observable<any> {
+    return this.http.put(this.removeSubjectUrl, subject);
   }
- }
+}
