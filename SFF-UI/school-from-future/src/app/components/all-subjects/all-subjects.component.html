@@ -1,5 +1,6 @@
-<h5 class="pt-3 px-3">Всички учебни предмети</h5>
-<div class="p-3">
+
+<div class="table-subjects">
+	<div class="header">Всички учебни предмети</div>
 	<table>
 		<tr>
 			<th>
@@ -14,6 +15,16 @@
 			<th>
 				Изтриване
 			</th>
+		</tr>
+		<tr>
+			<td>subject.name}}</td>
+			<td>subject.description}}</td>
+			<td>subject.teacher}}</td>
+			<td>
+				<button type="button" (click)="deleteSubject(subject.id)">
+          <i class="fa fa-trash" aria-hidden="true"></i> 
+        </button>
+			</td>
 		</tr>
 		<tr *ngFor="let subject of subjects">
 			<td>{{subject.name}}</td>

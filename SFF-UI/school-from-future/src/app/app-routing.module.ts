@@ -10,6 +10,7 @@ import { EventComponent } from './components/event/event.component';
 import { StudentProfileComponent } from './components/student-profile/student-profile.component';
 import { AllSubjectsComponent } from './components/all-subjects/all-subjects.component';
 import { ChatComponent } from './components/chat/chat.component';
+import { SubjectViewComponent } from './components/subject-view/subject-view.component';
 
 const routes: Routes = [
   {
@@ -43,6 +44,9 @@ const routes: Routes = [
   }, {
     path: 'chat',
     component: ChatComponent
+  }, {
+    path: 'subject-view',
+    component: SubjectViewComponent
   }];
 
 
