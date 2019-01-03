@@ -1,58 +1,46 @@
-<div class="table-students">
-	<div class="header">Учебен предмет</div>
-	<table>
-		<tr>
-			<th>
-				Име на ученика
-			</th>
-			<th>
-				Клас
-			</th>
-			<th>
-				Номер в клас
-			</th>
-			<th>
-				Оценки
-			</th>
-			<th>
-				Редактиране
-			</th>
-		</tr>
-		<tr>
-			<td>s.firstName}} {{s.lastName}}</td>
-			<td>s.grade}}</td>
-			<td>s.gradeNumber}}</td>
-			<td>s.grades}}</td>
-			<td>
-				<button type="button" (click)="editGrades(student.id)">
-					<i class="fas fa-edit" aria-hidden="true">
-					</i>
-				</button>
-			</td>
-		</tr>
-		<tr>
-			<td>s.firstName}} {{s.lastName}}</td>
-			<td>s.grade}}</td>
-			<td>s.gradeNumber}}</td>
-			<td>s.grades}}</td>
-			<td>
-				<button type="button" (click)="editGrades(student.id)">
-					<i class="fas fa-edit" aria-hidden="true">
-					</i>
-				</button>
-			</td>
-		</tr>
-		<tr *ngFor="let s of students">
-			<td>{{s.firstName}} {{s.lastName}}</td>
-			<td>{{s.grade}}</td>
-			<td>{{s.gradeNumber}}</td>
-			<td>{{s.grades}}</td>
-			<td>
-				<button type="button" (click)="editGrades(student.id)">
-					<i class="fas fa-edit" aria-hidden="true">
-					</i>
-				</button>
-			</td>
-		</tr>
-	</table>
-</div>
+<body>
+	<div class="subject-dropdown">
+		<label for="subjectName">Учебен предмет </label>
+		<select [(ngModel)]="subject" name="subjectName" (change)="getStudents()">
+			<option *ngFor="let s of subjects" [ngValue]="s.id">{{s.name}}</option>
+		</select>
+	</div>
+	<div class="table-students">
+		<div class="header">{{subjectName}}</div>
+		<table>
+			<tr>
+				<th>
+					Име на ученика
+				</th>
+				<th>
+					Email
+				</th>
+				<th>
+					Клас
+				</th>
+				<th>
+					Номер в клас
+				</th>
+				<th>
+					Оценки
+				</th>
+				<th>
+					Редактиране
+				</th>
+			</tr>
+			<tr *ngFor="let s of students">
+				<td [(ngModel)]="name">{{s.firstName}} {{s.lastName}}</td>
+				<td [(ngModel)]="email">{{s.email}}</td>
+				<td>{{s.grade}}</td>
+				<td>{{s.gradeNumber}}</td>
+				<td *ngFor="let g of grades">{{g}}</td>
+				<td>
+					<button type="button" (click)="editGrades(student.id)">
+						<i class="fas fa-edit" aria-hidden="true">
+						</i>
+					</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>

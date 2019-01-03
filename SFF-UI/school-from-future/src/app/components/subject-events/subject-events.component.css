@@ -3,6 +3,34 @@ body {
 	padding:20px;
 }
 
+select {
+	display: block;
+	padding:5px;
+    margin : 0 auto;
+	width: 410px;
+	height:40px;
+	border:1px solid #4f0a64;
+	border-radius:5px;
+	background-color: white;
+}
+
+option {
+	font-size: 16px;
+}
+
+label {
+	text-align: center;
+    display: block;
+	font-size:30px;
+	font-weight:bold;
+    padding: 10px;
+}
+
+h3 {
+	text-align:center;
+	font-size: 24px;
+}
+
 .header {
    background-color: #280533;
    border-top-left-radius: 10px;
@@ -13,10 +41,10 @@ body {
    text-align: center;
 }
 
-.table-students {
+.subject-events, .subject-description {
 	border:1px solid #4f0a64;
 	border-radius: 10px;
-	margin-top:30px;
+	margin-top:20px;
 	margin-left:auto;
     margin-right:auto;
     width: 80%
@@ -48,11 +76,8 @@ table {
       font-weight: 500;
    }
    
-   tr:nth-child(2n) {     
+   tr{     
        background-color: white; 
-	   }
-   tr:nth-child(2n+1) { 
-   background-color: #f3dbfb;
 	   }
 	   
 	table td {
@@ -83,28 +108,3 @@ table {
 	  border-left: 0;
 	}
 	
-select {
-	display: block;
-	padding:5px;
-    margin : 0 auto;
-	width: 410px;
-	height:40px;
-	border:1px solid grey;
-	border-radius:5px;
-}
-
-option {
-	font-size: 16px;
-}
-
-label {
-	text-align: center;
-    display: block;
-	font-size:30px;
-	font-weight:bold;
-    padding: 10px;
-}
-
-
-  
- 

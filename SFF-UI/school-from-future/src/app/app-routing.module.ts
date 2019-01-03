@@ -11,6 +11,7 @@ import { StudentProfileComponent } from './components/student-profile/student-pr
 import { AllSubjectsComponent } from './components/all-subjects/all-subjects.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { SubjectViewComponent } from './components/subject-view/subject-view.component';
+import { SubjectEventsComponent } from './components/subject-events/subject-events.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,9 @@ const routes: Routes = [
   }, {
     path: 'subject-view',
     component: SubjectViewComponent
+  }, {
+    path: 'subject-events',
+    component: SubjectEventsComponent
   }];
 
 
