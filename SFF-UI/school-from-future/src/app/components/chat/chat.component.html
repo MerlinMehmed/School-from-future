@@ -1,51 +1,44 @@
-<body>	
+<body>
 	<div class="chat-container">
-	<h3 class=" text-center"><img id="chat-logo" src="https://cdn4.iconfinder.com/data/icons/Balloons_iContainer/512/Small-Pink-Balloon.png">ЧАТ</h3>
-	  <div class="main-card">
-		<div class="contacts">
-			<div class="contacts_heading">
-				 <h4>Контакти</h4>
-			</div>
-			<div class="active_people">
-				<div class="active_person"> 
-					<img src="https://cdn3.iconfinder.com/data/icons/glypho-generic-icons/64/user-man-speech-bubble-512.png">
-					<h5 class="active_name">Петър Петров</h5>
+		<h3 class=" text-center"><img id="chat-logo" src="https://cdn4.iconfinder.com/data/icons/Balloons_iContainer/512/Small-Pink-Balloon.png">ЧАТ</h3>
+		<div class="main-card">
+			<div class="contacts">
+				<div class="contacts_heading">
+					<h4>Контакти</h4>
 				</div>
-				<div class="active_person"> 
-					<img src="https://cdn3.iconfinder.com/data/icons/glypho-generic-icons/64/user-man-speech-bubble-512.png">
-					<h5 class="active_name">Иван Иванов</h5>
+				<div class="active_people">
+					<div *ngFor="let u of activeUsers">
+						<a (click)="chat(u)">
+							<!-- <img src="https://cdn3.iconfinder.com/data/icons/glypho-generic-icons/64/user-man-speech-bubble-512.png"> -->
+							<i class="far fa-user big"></i>
+							<h5 class="active_name">{{u.name}}</h5>
+							<i class="far fa-envelope big"></i>
+							<i class="far fa-envelope-open big"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div *ngIf="to !== undefined" class="messages-container">
+				<h5 id="to-name">{{to.name}}</h5>
+				<ul class="chat-list">
+					<li *ngFor="let message of messages" [ngClass]="[(message.action === undefined)? 'chat-list-item': '']">
+						<h5 mat-line *ngIf="message.action === undefined">
+							<b>{{getName(message.from)}}</b>
+						</h5>
+						<p mat-line *ngIf="message.action === undefined">
+							<span> {{message.content}} </span>
+						</p>
+					</li>
+				</ul>
+				<hr>
+				<div class="chat-footer-container">
+					<form class="chat-input">
+						<input name="msgContent" placeholder="Въведи своето съобщение" [(ngModel)]="messageContent" (keyup.enter)="sendMessage(messageContent)">
+						<button (click)="sendMessage(this.messageContent)">Изпрати</button>
+						<mat-hint *ngIf="messageContent !== undefined && messageContent !== null" align="end">{{messageContent.length}}/140</mat-hint>
+					</form>
 				</div>
 			</div>
 		</div>
-		<div class="messages-container">	
-			<ul class="chat-list">
-			  <li>Здравей</li>
-			  <li *ngFor="let message of messages" [ngClass]="[(message.action === undefined)? 'chat-list-item': '']">
-				<img mat-list-avatar *ngIf="message.action === undefined">
-				<h4 mat-line *ngIf="message.action === undefined">
-				  <b>{{message.from.name}}</b>
-				</h4>
-				<p mat-line *ngIf="message.action === undefined">
-				  <span> {{message.content}} </span>
-				</p>
-				<p mat-line *ngIf="message.action === action.JOINED" class="chat-notification">
-				  <span> <b>{{message.from.name}}</b> joined to the conversation. </span>
-				</p>
-			  <li>
-			</ul><hr>		
-			<div class="chat-footer-container">
-			  <!-- <mat-icon>message</mat-icon> -->
-			  <form class="chat-input">
-				<input 
-					   name="msgContent"
-					   placeholder="Въведи своето съобщение" 
-					   [(ngModel)]="messageContent" 
-					   (keyup.enter)="sendMessage(messageContent)">
-				<button (click)="sendMessage(this.messageContent)">Изпрати</button>
-				<!-- <mat-hint align="end">{{inputMessage.value.length}}/140</mat-hint> -->
-			  </form>
-			</div>
-		</div>
-	  </div>
 	</div>
- </body> 
+</body>

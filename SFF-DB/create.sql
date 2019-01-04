@@ -179,3 +179,22 @@ CREATE TABLE IF NOT EXISTS `school_from_future`.`Event` (
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
+
+
+CREATE TABLE IF NOT EXISTS `school_from_future`.`Messages` (
+  `from_email` VARCHAR(50) NOT NULL,
+  `to_email` VARCHAR(50) NOT NULL,
+  `content` VARCHAR(150) NOT NULL,
+  `date` TIMESTAMP NOT NULL,
+  CONSTRAINT `from_email`
+    FOREIGN KEY (`from_email`)
+    REFERENCES `school_from_future`.`User` (`email`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `to_email`
+    FOREIGN KEY (`to_email`)
+    REFERENCES `school_from_future`.`User` (`email`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+

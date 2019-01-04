@@ -16,6 +16,7 @@ import bg.uni.sofia.fmi.piss.dto.User;
 public class UserDAO {
 	private static final String FIND_USER = "SELECT * FROM USER WHERE email=? AND pass=?";
 	private static final String FIND_USER_DATA = "SELECT * FROM USER WHERE email=?";
+	private static final String FIND_USER_NAMES = "SELECT first_name, last_name FROM USER WHERE email=?";
 	private static final String FIND_STUDENT_DATA = "SELECT * FROM USER JOIN STUDENT ON USER.email = STUDENT.email WHERE user.email=?";
 	private static final String INSERT_USER = "INSERT INTO user(email, first_name, last_name, pass, role) VALUES(?,?,?,?,?);";
 	private static final String INSERT_STUDENT = "INSERT INTO student(email, class, class_number) VALUES(?,?,?);";
@@ -83,6 +84,22 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 		return student;
+	}
+
+	public String getNameOfUser(String email) {
+		String name = null;
+		try (Connection conn = dataSource.getConnection()) {
+			final PreparedStatement ps = conn.prepareStatement(FIND_USER_NAMES);
+			ps.setString(1, email);
+			final ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				name = rs.getString("first_name").concat(" ").concat(rs.getString("last_name"));
+			}
+		} catch (final SQLException e) {
+			System.out.println("SQL exception in getting user's names");
+			e.printStackTrace();
+		}
+		return name;
 	}
 
 	public void registerUser(RegisterData data) {

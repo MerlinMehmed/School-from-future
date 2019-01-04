@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginData } from 'src/app/model/LoginData';
 import { LoginService } from 'src/app/services/login/login.service';
+import { SocketService } from 'src/app/services/socket/socket.service';
+import { User } from 'src/app/model/user';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +19,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private loginService: LoginService,
+    private socketService: SocketService,
     private router: Router
   ) { }
 
@@ -28,6 +31,7 @@ export class LoginComponent implements OnInit {
       if (loginUser) {
         console.log(loginUser);
         sessionStorage.setItem('user', JSON.stringify(loginUser));
+        // this.socketService.initSocket(new User(loginUser.firstName.concat(" ").concat(loginUser.lastName), loginUser.email));
         this.router.navigate(['/index']);
       }
     });

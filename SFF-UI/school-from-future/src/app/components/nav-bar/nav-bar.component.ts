@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login/login.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,7 +9,9 @@ import { Router } from '@angular/router';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private loginService: LoginService
+  ) { }
 
   ngOnInit() {
   }
@@ -30,6 +33,10 @@ export class NavBarComponent implements OnInit {
   isStudent() {
 	var currentUser = JSON.parse(sessionStorage.getItem('user'));
     return currentUser['role']=="student";
+  }
+
+  logout() {
+    this.loginService.logout();
   }
 
 }

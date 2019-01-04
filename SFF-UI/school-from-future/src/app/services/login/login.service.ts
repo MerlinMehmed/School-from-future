@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { LoginData } from 'src/app/model/LoginData';
 import { environment } from 'src/environments/environment';
 import { LoginUser } from 'src/app/model/LoginUser';
+import { User } from 'src/app/model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,8 @@ import { LoginUser } from 'src/app/model/LoginUser';
 export class LoginService {
 
   private loginUrl = environment.url + '/login';
+  private logoutUrl = environment.url + '/logout';
+  private activeUsersUrl = environment.url + '/active-users';
 
   constructor(private http: HttpClient) { }
 
@@ -19,8 +22,16 @@ export class LoginService {
     return this.http.post<LoginUser>(this.loginUrl, loginData);
   }
 
-  getLoginUser(): LoginData {
+  getLoginUser(): LoginUser {
     return JSON.parse(sessionStorage.getItem('user'));
+  }
+
+  logout() : Observable<any> {
+    return this.http.post(this.logoutUrl, this.getLoginUser());
+  }
+
+  getActiveUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.activeUsersUrl);
   }
 
 }

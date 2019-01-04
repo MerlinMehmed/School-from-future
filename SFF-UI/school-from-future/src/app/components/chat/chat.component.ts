@@ -4,6 +4,8 @@ import { Action } from 'src/app/model/Action';
 import { Event } from 'src/app/model/Event';
 import { User } from 'src/app/model/user';
 import { Message } from 'src/app/model/message';
+import { LoginService } from 'src/app/services/login/login.service';
+import { MessageService } from 'src/app/services/message/message.service';
 
 @Component({
   selector: 'app-chat',
@@ -12,16 +14,41 @@ import { Message } from 'src/app/model/message';
 })
 export class ChatComponent implements OnInit {
   action = Action;
-  user: User ;
+  user: User;
   messages: Message[] = [];
   messageContent: string;
   ioConnection: any;
 
-  constructor(private socketService: SocketService) { }
+  to: User;
+
+  activeUsers: User[];
+
+  constructor(
+    private socketService: SocketService,
+    private loginService: LoginService,
+    private messageService: MessageService
+  ) { }
 
   ngOnInit(): void {
+    this.getActiveUsers();
     this.initUser();
     this.initIoConnection();
+  }
+
+  private getMessages() {
+    this.messageService.getMessages(this.user.email, this.to.email).subscribe(res => {
+      this.messages = res;
+      console.log(this.messages);
+    })
+  }
+
+  private getActiveUsers() {
+    this.loginService.getActiveUsers().subscribe(res => {
+      console.log(res);
+      this.activeUsers = res;
+      let thisUser = this.loginService.getLoginUser().email;
+      this.activeUsers = this.activeUsers.filter(u => u.email != thisUser);
+    })
   }
 
   private initIoConnection(): void {
@@ -38,11 +65,21 @@ export class ChatComponent implements OnInit {
       .subscribe(() => {
         console.log('connected');
       });
-      
+
     this.socketService.onEvent(Event.DISCONNECT)
       .subscribe(() => {
         console.log('disconnected');
       });
+  }
+
+  public getName(from) {
+    if(from.name != undefined)
+      return from.name;
+    else if (this.to.email === from)
+      return this.to.name;
+    else if (this.user.email === from)
+      return this.user.name;
+    else return "";
   }
 
   public sendMessage(message: string): void {
@@ -51,8 +88,9 @@ export class ChatComponent implements OnInit {
       return;
     }
 
-    let to = new User("Admin Adminov", "admin@gmail.com");
-    let msg = new Message(this.user, new User("Admin Adminov", "admin@gmail.com"), message);
+    // let to = new User("Admin Adminov", "admin@gmail.com");
+    let msg = new Message(this.user, this.to, message);
+    this.messageService.addMessage(msg).subscribe(() => console.log("finished"));
     this.messages.push(msg)
     this.socketService.send(msg);
     this.messageContent = null;
@@ -72,8 +110,14 @@ export class ChatComponent implements OnInit {
   // }
 
   initUser() {
-    let loggedUser =  JSON.parse(sessionStorage.getItem('user'));
-    this.user=new User(loggedUser.firstName+" "+loggedUser.lastName, loggedUser.email);
+    let loggedUser = JSON.parse(sessionStorage.getItem('user'));
+    this.user = new User(loggedUser.firstName + " " + loggedUser.lastName, loggedUser.email);
     console.log(this.user);
+  }
+
+  chat(user: User) {
+    this.to = user;
+    console.log(this.to);
+    this.getMessages();
   }
 }

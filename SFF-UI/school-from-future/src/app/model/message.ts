@@ -5,12 +5,14 @@ export class Message {
     from: User;
     to: User;
     content: string;
+    date: Date;
     action?: Action;
 
     constructor(from: User, to: User, content: string, action?: Action) {
         this.from = from;
         this.to = to;
         this.content = content;
+        this.date = new Date();
         this.action = action;
     }
 
