@@ -1,0 +1,37 @@
+<body>
+	<div class="subject-dropdown">
+		<label for="subjectName">Учебен предмет </label>
+		<select [(ngModel)]="subject" name="subjectName" (change)="getTeacherSubjects()">
+			<option *ngFor="let s of subjects" [ngValue]="s.id">{{s.name}}</option>
+		</select>
+	</div>
+	<div class="subject-description">
+	<div class="header">Описание</div>
+		<table>
+			<tr>
+				<td>{{subjectDescription}}</td>
+			</tr>
+		</table>
+	</div>
+	<div class="subject-events">
+	<div class="header">Дейности</div>
+	<table>
+			<tr>
+				<th>
+					Дата 
+				</th>
+				<th>
+					Час
+				</th>
+				<th>
+					Местоположение
+				</th>
+			</tr>
+			<tr *ngFor="let e of events">
+				<td>{{e.date}}</td>
+				<td>{{e.time}}</td>
+				<td>{{e.place}}</td>
+			</tr>
+	</table>
+	</div>
+</body>

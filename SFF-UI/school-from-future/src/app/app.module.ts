@@ -19,6 +19,8 @@ import { EventComponent } from './components/event/event.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { StudentProfileComponent } from './components/student-profile/student-profile.component';
 import { AllSubjectsComponent } from './components/all-subjects/all-subjects.component';
+import { SubjectViewComponent } from './components/subject-view/subject-view.component';
+import { SubjectEventsComponent } from './components/subject-events/subject-events.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { AllSubjectsComponent } from './components/all-subjects/all-subjects.com
     EventComponent,
     ChatComponent,
     StudentProfileComponent,
-    AllSubjectsComponent
+    AllSubjectsComponent,
+    SubjectViewComponent,
+    SubjectEventsComponent
   ],
   imports: [
     BrowserModule,
