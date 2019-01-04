@@ -12,6 +12,7 @@ import { AllSubjectsComponent } from './components/all-subjects/all-subjects.com
 import { ChatComponent } from './components/chat/chat.component';
 import { SubjectViewComponent } from './components/subject-view/subject-view.component';
 import { SubjectEventsComponent } from './components/subject-events/subject-events.component';
+import { AllUsersComponent } from './components/all-users/all-users.component';
 
 const routes: Routes = [
   {
@@ -51,6 +52,9 @@ const routes: Routes = [
   }, {
     path: 'subject-events',
     component: SubjectEventsComponent
+  }, {
+    path: 'all-users',
+    component: AllUsersComponent
   }];
 
 

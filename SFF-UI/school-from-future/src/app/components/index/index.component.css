@@ -1,0 +1,30 @@
+div {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	text-align: center;
+	background-color: #F4DECB;
+}
+
+div.description {
+	color:white;
+	background-color: #720F8F;
+}
+
+img {
+	width: 40%;
+}
+
+h3 {
+	padding-bottom: 20px;
+}
+
+i:only-child {
+	font-size:60px;
+	color: #800080;
+}
+
+i {
+	font-size:60px;
+	color:white;
+	padding:5px;
+}

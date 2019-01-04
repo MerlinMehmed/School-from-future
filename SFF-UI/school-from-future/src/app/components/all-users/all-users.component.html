@@ -1,0 +1,43 @@
+<body>	
+	<div class="table-users">
+		<div class="header">Всички потребители</div>
+		<table>
+			<tr>
+				<th>
+					Име
+				</th>
+				<th>
+					Фамилия
+				</th>
+				<th>
+					Email
+				</th>
+				<th>
+					Роля
+				</th>
+				<th>
+					Редактиране
+				</th>
+				<th>
+					Изтриване
+				</th>
+			</tr>
+			<tr *ngFor="let u of users">
+				<td>{{u.firstName}}</td>
+				<td>{{u.lastName}}</td>
+				<td>{{u.email}}</td>
+				<td>{{u.role}}</td>
+				<td>
+					<button type="button" (click)="editUser(user.email)">
+						<i class="fas fa-edit" aria-hidden="true"></i>
+					</button>
+				</td>
+				<td>
+					<button type="button" (click)="deleteUser(user.email)">
+						<i class="fa fa-trash" aria-hidden="true"></i> 
+					</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
