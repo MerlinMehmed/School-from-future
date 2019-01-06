@@ -21,6 +21,7 @@ import { StudentProfileComponent } from './components/student-profile/student-pr
 import { AllSubjectsComponent } from './components/all-subjects/all-subjects.component';
 import { SubjectViewComponent } from './components/subject-view/subject-view.component';
 import { SubjectEventsComponent } from './components/subject-events/subject-events.component';
+import { AllUsersComponent } from './components/all-users/all-users.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { SubjectEventsComponent } from './components/subject-events/subject-even
     StudentProfileComponent,
     AllSubjectsComponent,
     SubjectViewComponent,
-    SubjectEventsComponent
+    SubjectEventsComponent,
+    AllUsersComponent
   ],
   imports: [
     BrowserModule,

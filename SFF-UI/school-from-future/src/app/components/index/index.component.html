@@ -1,8 +1,16 @@
 <ng-template [ngIf]="!isLogged()">
-  <div style=" height: 100vh;text-align:center;">
-    <h1>School from future</h1>
-    <div><button type="button" (click)="login()">Вход</button></div>
-    <div><button type="button" (click)="register()">Регистрация</button></div>
+  <div>
+	<img src="https://i.imgur.com/qOBuXAN.png">
+	<div><i class="fas fa-arrow-circle-down"></i></div>
+  </div>  
+  <div class="description">
+	<h3>Една платформа с няколко интегрирани модула</h3>
+	 <i class="fas fa-user-graduate"></i>
+	 <p>Електронен дневник с оценки, отсъствия, забележки</p>
+	 <i class="fas fa-comments"></i>
+	 <p>Удобно средство за директна комуникация между ученици и учители</p>
+	 <i class="far fa-calendar-alt"></i>
+	 <p>Информация за всички одобрени от училището извънкласни дейности и занимания</p>
   </div>  
 </ng-template>
 <ng-template [ngIf]="isLogged()">
