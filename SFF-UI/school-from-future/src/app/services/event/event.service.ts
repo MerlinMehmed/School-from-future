@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class EventService {
   private addEventUrl = environment.url + '/add-event';
+  private getEventsUrl = environment.url + '/events';
   
   constructor(private http: HttpClient) { }
 
@@ -20,5 +21,10 @@ export class EventService {
     }
     console.log(data);
     return this.http.post(this.addEventUrl, data);
+  }
+
+  getSubjectEvents(subject: number): Observable<any> {
+    let url = this.getEventsUrl + "/"+subject;
+    return this.http.get(url);
   }
 }

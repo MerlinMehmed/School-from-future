@@ -62,14 +62,14 @@ public class StudentController {
 
 	@RequestMapping(value = "/absences/{student}/{email}/{subject}", method = RequestMethod.GET, produces = {
 			"application/xml", "application/json" })
-	public ResponseEntity<Integer> getAbsences(@PathVariable(name = "student", required = true) String student,
+	public ResponseEntity<Double> getAbsences(@PathVariable(name = "student", required = true) String student,
 			@PathVariable(name = "email", required = true) String email,
 			@PathVariable(name = "subject", required = true) int subjectId) {
 		email = email.replace(',', '.');
-		final int grades = studentAbsenceDAO.getAbsences(student.concat("@").concat(email), subjectId);
+		final double absences = studentAbsenceDAO.getAbsences(student.concat("@").concat(email), subjectId);
 		final HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Type", "application/json; charset=utf-8");
-		return new ResponseEntity<Integer>(grades, headers, HttpStatus.OK);
+		return new ResponseEntity<Double>(absences, headers, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/notes/{student}/{email}/{subject}", method = RequestMethod.GET, produces = {

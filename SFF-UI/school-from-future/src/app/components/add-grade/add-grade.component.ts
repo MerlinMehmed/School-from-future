@@ -15,9 +15,16 @@ export class AddGradeComponent implements OnInit {
 
   subject: number;
   student: any;
+
   grade: number;
+  absence: number;
+  note: string;
 
   teacher: string;
+
+  fGrade: boolean;
+  fAbsence: boolean;
+  fNote: boolean;
 
   constructor(
     private router: Router,
@@ -33,8 +40,12 @@ export class AddGradeComponent implements OnInit {
     console.log(this.student);
     console.log(this.subject);
     console.log(this.grade);
-    
-    this.studentService.addGrade(this.student, this.subject, this.grade).subscribe(_=>console.log("ok"));
+    if (this.fGrade)
+      this.studentService.addGrade(this.student, this.subject, this.grade).subscribe(_ => console.log("ok"));
+    if (this.fAbsence)
+      this.studentService.addAbsence(this.student, this.subject, this.absence).subscribe(_ => console.log("ok"));
+    if (this.fNote)
+      this.studentService.addNote(this.student, this.subject, this.note).subscribe(_ => console.log("ok"));
   }
 
   routeToIndex() {

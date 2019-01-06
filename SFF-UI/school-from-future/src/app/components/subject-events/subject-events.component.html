@@ -1,37 +1,59 @@
-<body>
-	<div class="subject-dropdown">
-		<label for="subjectName">Учебен предмет </label>
-		<select [(ngModel)]="subject" name="subjectName" (change)="getTeacherSubjects()">
-			<option *ngFor="let s of subjects" [ngValue]="s.id">{{s.name}}</option>
-		</select>
-	</div>
-	<div class="subject-description">
+<div class="subject-dropdown">
+	<label for="subjectName">Учебен предмет </label>
+	<select [(ngModel)]="subject" name="subjectName" (change)="getSubjectEvents()">
+		<option *ngFor="let s of subjects" [ngValue]="s.id">{{s.name}}</option>
+	</select>
+</div>
+<!-- <div class="subject-description">
 	<div class="header">Описание</div>
-		<table>
-			<tr>
-				<td>{{subjectDescription}}</td>
-			</tr>
-		</table>
-	</div>
-	<div class="subject-events">
+	<table>
+		<tr>
+			<td>{{subjectDescription}}</td>
+		</tr>
+	</table>
+</div> -->
+<div class="subject-events">
 	<div class="header">Дейности</div>
 	<table>
-			<tr>
-				<th>
-					Дата 
-				</th>
-				<th>
-					Час
-				</th>
-				<th>
-					Местоположение
-				</th>
-			</tr>
-			<tr *ngFor="let e of events">
-				<td>{{e.date}}</td>
-				<td>{{e.time}}</td>
-				<td>{{e.place}}</td>
-			</tr>
+		<tr>
+			<th>
+				Дата
+			</th>
+			<th>
+				Час
+			</th>
+			<th>
+				Местоположение
+			</th>
+		</tr>
+		<tr *ngFor="let e of events">
+			<td>{{e.date}}</td>
+			<td>{{e.time}}</td>
+			<td>
+				<button type="button" (click)="open(content, e.latitude, e.longitude)">
+					<i class="fas fa-map-marker-alt"></i>
+				</button>
+			</td>
+		</tr>
 	</table>
+</div>
+
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title">Местоположение</h4>
+		<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+			<span aria-hidden="true">&times;</span>
+		</button>
 	</div>
-</body>
+	<div class="modal-body">
+		<div class="pb-1">
+			<agm-map [latitude]="lat" [longitude]="lng">
+				<agm-marker [latitude]="lat" [longitude]="lng">
+				</agm-marker>
+			</agm-map>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+	</div>
+</ng-template>

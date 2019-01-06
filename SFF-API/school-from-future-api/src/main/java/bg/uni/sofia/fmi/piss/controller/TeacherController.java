@@ -15,11 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import bg.uni.sofia.fmi.piss.dao.EventDAO;
 import bg.uni.sofia.fmi.piss.dao.SchoolSubjectDAO;
+import bg.uni.sofia.fmi.piss.dao.StudentAbsenceDAO;
 import bg.uni.sofia.fmi.piss.dao.StudentGradeDAO;
+import bg.uni.sofia.fmi.piss.dao.StudentNoteDAO;
 import bg.uni.sofia.fmi.piss.dao.StudentSubjectDAO;
 import bg.uni.sofia.fmi.piss.dao.UserDAO;
 import bg.uni.sofia.fmi.piss.data.SchoolSubject;
+import bg.uni.sofia.fmi.piss.data.StudentAbsence;
 import bg.uni.sofia.fmi.piss.data.StudentGrade;
+import bg.uni.sofia.fmi.piss.data.StudentNote;
 import bg.uni.sofia.fmi.piss.dto.Event;
 import bg.uni.sofia.fmi.piss.dto.Student;
 
@@ -30,6 +34,12 @@ public class TeacherController {
 
 	@Autowired
 	StudentGradeDAO studentGradeDAO;
+
+	@Autowired
+	StudentAbsenceDAO studentAbsenceDAO;
+
+	@Autowired
+	StudentNoteDAO studentNoteDAO;
 
 	@Autowired
 	StudentSubjectDAO studentSubjectDAO;
@@ -71,5 +81,15 @@ public class TeacherController {
 	@RequestMapping(value = "/add-event", method = RequestMethod.POST)
 	public void addEvent(@RequestBody Event data) {
 		eventDAO.addEvent(data.getSubject(), data.getTime(), data.getLatitude(), data.getLongitude());
+	}
+
+	@RequestMapping(value = "/add-note", method = RequestMethod.POST)
+	public void addNote(@RequestBody StudentNote data) {
+		studentNoteDAO.addNote(data.getDescription(), data.getStudent(), data.getSubjectId());
+	}
+
+	@RequestMapping(value = "/add-absence", method = RequestMethod.POST)
+	public void addAbsence(@RequestBody StudentAbsence data) {
+		studentAbsenceDAO.addAbsence(data.getAbsence(), data.getStudent(), data.getSubjectId());
 	}
 }

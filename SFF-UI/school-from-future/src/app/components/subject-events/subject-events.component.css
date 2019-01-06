@@ -107,4 +107,9 @@ table {
 	table tr th:first-child {
 	  border-left: 0;
 	}
+
+	agm-map {
+    height: 300px;
+    width: 300px;
+  }
 	

@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public final class StudentGradeDAO {
 	private static final String INSERT_GRADE = "INSERT INTO student_grade (student_id, subject_id, grade) VALUES (?,?,?);";
 	private static final String GET_GRADES = "SELECT grade FROM student_grade WHERE student_id=? AND subject_id=?;";
-
+	private static final String UPDATE_GRADE = "UPDATE student_grade SET grade=? WHERE student_id=? AND subject_id=? limit 1;";
 	@Autowired
 	private DataSource dataSource;
 
@@ -46,5 +46,18 @@ public final class StudentGradeDAO {
 			e.printStackTrace();
 		}
 		return grades;
+	}
+
+	public void editGrade(String student, int subject_id, int grade) {
+		try (Connection conn = dataSource.getConnection()) {
+			final PreparedStatement ps = conn.prepareStatement(UPDATE_GRADE);
+			ps.setInt(1, grade);
+			ps.setString(2, student);
+			ps.setInt(3, subject_id);
+			ps.executeUpdate();
+		} catch (final SQLException e) {
+			System.out.println("SQL exception in setting absences");
+			e.printStackTrace();
+		}
 	}
 }

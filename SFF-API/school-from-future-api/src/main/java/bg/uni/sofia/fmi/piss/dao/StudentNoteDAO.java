@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public final class StudentNoteDAO {
 	private static final String GET_NOTES = "SELECT description FROM student_note WHERE student_id=? AND subject_id=?;";
+	private static final String ADD_NOTE = "INSERT INTO student_note(student_id, subject_id, description) VALUES(?,?,?)";
 
 	@Autowired
 	private DataSource dataSource;
@@ -32,5 +33,19 @@ public final class StudentNoteDAO {
 			e.printStackTrace();
 		}
 		return notes;
+	}
+
+	public void addNote(String description, String student, int subjectId) {
+
+		try (Connection conn = dataSource.getConnection()) {
+			final PreparedStatement ps = conn.prepareStatement(ADD_NOTE);
+			ps.setString(1, student);
+			ps.setInt(2, subjectId);
+			ps.setString(3, description);
+			ps.executeUpdate();
+		} catch (final SQLException e) {
+			System.out.println("SQL exception in setting absences");
+			e.printStackTrace();
+		}
 	}
 }
