@@ -1,30 +1,32 @@
-<div id="wrapper">
-	<h5 class="pt-3 px-3">Добави дейност</h5>
-	<div class="p-3">
-		<form class="justify-content-center" id="add">
-			<div class="pb-1">
-				<label for="subjectName">Учебен предмет </label>
-				<select [(ngModel)]="subject" name="subjectName">
-					<option *ngFor="let s of subjects" [ngValue]="s.id">{{s.name}}</option>
-				</select>
+<body>
+	<div id="wrapper">
+		<h5 class="pt-3 px-3">Добави дейност</h5>
+		<div class="p-3">
+			<form class="justify-content-center" id="add">
 				<div class="pb-1">
-					<label for="date">Дата </label>
-					<input type="date" [(ngModel)]="eventDate" name="date">
+					<label for="subjectName">Учебен предмет </label>
+					<select [(ngModel)]="subject" name="subjectName">
+						<option *ngFor="let s of subjects" [ngValue]="s.id">{{s.name}}</option>
+					</select>
+					<div class="pb-1">
+						<label for="date">Дата </label>
+						<input type="date" [(ngModel)]="eventDate" name="date">
+					</div>
+					<div class="pb-1">
+						<label for="time">Час </label>
+						<input type="time" [(ngModel)]="eventTime" name="time">
+					</div>
+					<div class="pb-1">
+						<label for="location">Местоположение </label>
+						<agm-map [latitude]="lat" [longitude]="lng" (mapClick)="changeLocation($event)">
+							<agm-marker [latitude]="lat" [longitude]="lng" *ngIf="locationChosen">
+							</agm-marker>
+						</agm-map>
+					</div>
 				</div>
-				<div class="pb-1">
-					<label for="time">Час </label>
-					<input type="time" [(ngModel)]="eventTime" name="time">
-				</div>
-				<div class="pb-1">
-					<label for="location">Местоположение </label>
-					<agm-map [latitude]="lat" [longitude]="lng" (mapClick)="changeLocation($event)">
-						<agm-marker [latitude]="lat" [longitude]="lng" *ngIf="locationChosen">
-						</agm-marker>
-					</agm-map>
-				</div>
-			</div>
-			<button (click)="addEvent();" class="btn btn-outline-info btn-primary">Добави</button>
-			<button (click)="routeToIndex()" class="btn btn-outline-info btn-primary" name="cancel">Отказ</button>
-		</form>
+				<button (click)="addEvent();" class="btn btn-outline-info btn-primary">Добави</button>
+				<button (click)="routeToIndex()" class="btn btn-outline-info btn-primary" name="cancel">Отказ</button>
+			</form>
+		</div>
 	</div>
-</div>
+<body>

@@ -22,6 +22,7 @@ import { AllSubjectsComponent } from './components/all-subjects/all-subjects.com
 import { SubjectViewComponent } from './components/subject-view/subject-view.component';
 import { SubjectEventsComponent } from './components/subject-events/subject-events.component';
 import { AllUsersComponent } from './components/all-users/all-users.component';
+import { NavBarLoggedComponent } from './components/nav-bar-logged/nav-bar-logged.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { AllUsersComponent } from './components/all-users/all-users.component';
     AllSubjectsComponent,
     SubjectViewComponent,
     SubjectEventsComponent,
-    AllUsersComponent
+    AllUsersComponent,
+    NavBarLoggedComponent
   ],
   imports: [
     BrowserModule,
