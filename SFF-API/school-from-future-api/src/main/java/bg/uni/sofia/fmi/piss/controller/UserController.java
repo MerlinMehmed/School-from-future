@@ -20,6 +20,7 @@ import bg.uni.sofia.fmi.piss.data.RegisterData;
 import bg.uni.sofia.fmi.piss.data.UserData;
 import bg.uni.sofia.fmi.piss.dto.Event;
 import bg.uni.sofia.fmi.piss.dto.User;
+import bg.uni.sofia.fmi.piss.dto.UserUpdate;
 
 @RestController
 public class UserController {
@@ -71,5 +72,41 @@ public class UserController {
 		final HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Type", "application/json; charset=utf-8");
 		return new ResponseEntity<List<Event>>(events, headers, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/chat-users", method = RequestMethod.GET, produces = { "application/xml",
+			"application/json" })
+	public ResponseEntity<List<UserData>> getChatUsers() {
+		final List<UserData> users = userDAO.getChatUsers();
+		final HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Type", "application/json; charset=utf-8");
+		return new ResponseEntity<List<UserData>>(users, headers, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/users", method = RequestMethod.GET, produces = { "application/xml", "application/json" })
+	public ResponseEntity<List<User>> getUsers() {
+		final List<User> users = userDAO.getUsers();
+		final HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Type", "application/json; charset=utf-8");
+		return new ResponseEntity<List<User>>(users, headers, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/delete-user", method = RequestMethod.POST, produces = { "application/xml",
+			"application/json" })
+	public ResponseEntity deleteUser(@RequestBody String email) {
+		userDAO.deleteUser(email);
+		final HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Type", "application/json; charset=utf-8");
+		return new ResponseEntity(headers, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/update-user", method = RequestMethod.POST, produces = { "application/xml",
+			"application/json" })
+	public ResponseEntity updateRole(@RequestBody UserUpdate data) {
+		userDAO.updateUser(data.getPrevEmail(), data.getFirstName(), data.getLastName(), data.getEmail(),
+				data.getRole());
+		final HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Type", "application/json; charset=utf-8");
+		return new ResponseEntity(headers, HttpStatus.OK);
 	}
 }

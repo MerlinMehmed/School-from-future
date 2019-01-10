@@ -16,10 +16,13 @@
 
 <body>
   <ng-template [ngIf]="isLogged()">
-    <app-nav-bar><div ng-include="'nav-bar-logged.component.html'"></div></app-nav-bar>
+    <app-nav-bar-logged></app-nav-bar-logged>
+    <!-- <app-nav-bar><div ng-include="'nav-bar-logged.component.html'"></div></app-nav-bar> -->
   </ng-template>
-	<router-outlet></router-outlet>
+  <!-- <router-outlet></router-outlet> -->
+  <ng-template [ngIf]="!isLogged()">
     <app-nav-bar><div ng-include="'nav-bar.component.html'"></div></app-nav-bar>
+  </ng-template>
 	<router-outlet></router-outlet>
 </body>
 

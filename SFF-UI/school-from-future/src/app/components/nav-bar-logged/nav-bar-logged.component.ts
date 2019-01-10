@@ -17,12 +17,12 @@ export class NavBarLoggedComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-	this.user = this.loginService.getLoginUser();
+    this.user = this.loginService.getLoginUser();
   }
-  
+
   logout() {
     this.loginService.logout();
-	sessionStorage.removeItem('user');
+    sessionStorage.removeItem('user');
     this.user = null;
     this.router.navigate(['/index']);
   }

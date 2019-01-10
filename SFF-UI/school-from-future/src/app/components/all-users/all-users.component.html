@@ -1,43 +1,70 @@
-<body>	
-	<div class="table-users">
-		<div class="header">Всички потребители</div>
-		<table>
-			<tr>
-				<th>
-					Име
-				</th>
-				<th>
-					Фамилия
-				</th>
-				<th>
-					Email
-				</th>
-				<th>
-					Роля
-				</th>
-				<th>
-					Редактиране
-				</th>
-				<th>
-					Изтриване
-				</th>
-			</tr>
-			<tr *ngFor="let u of users">
-				<td>{{u.firstName}}</td>
-				<td>{{u.lastName}}</td>
-				<td>{{u.email}}</td>
-				<td>{{u.role}}</td>
-				<td>
-					<button type="button" (click)="editUser(user.email)">
-						<i class="fas fa-edit" aria-hidden="true"></i>
-					</button>
-				</td>
-				<td>
-					<button type="button" (click)="deleteUser(user.email)">
-						<i class="fa fa-trash" aria-hidden="true"></i> 
-					</button>
-				</td>
-			</tr>
-		</table>
+<div class="table-users">
+	<div class="header">Всички потребители</div>
+	<table>
+		<tr>
+			<th>
+				Име
+			</th>
+			<th>
+				Фамилия
+			</th>
+			<th>
+				Email
+			</th>
+			<th>
+				Роля
+			</th>
+			<th>
+				Редактиране
+			</th>
+			<th>
+				Изтриване
+			</th>
+		</tr>
+		<tr *ngFor="let u of users">
+			<td>{{u.firstName}}</td>
+			<td>{{u.lastName}}</td>
+			<td>{{u.email}}</td>
+			<td>{{u.role}}</td>
+			<td>
+				<button type="button" (click)="open(content, u)">
+					<i class="fas fa-edit" aria-hidden="true"></i>
+				</button>
+			</td>
+			<td>
+				<button type="button" (click)="deleteUser(u.email)">
+					<i class="fa fa-trash" aria-hidden="true"></i>
+				</button>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title">Промяна на данни за потребител</h4>
+		<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+			<span aria-hidden="true">&times;</span>
+		</button>
 	</div>
-</body>
+	<div class="modal-body">
+		<form>
+			<label for="email">E-mail</label>
+			<input type="text" class="form-control" name="email" [(ngModel)]="newEmail" placeholder="Въведете e-mail">
+			<label for="name">Име</label>
+			<input type="text" class="form-control" name="name" [(ngModel)]="newFirstName" placeholder="Въведете име">
+			<label for="lastName">Фамилия</label>
+			<input type="text" class="form-control" name="lastName" [(ngModel)]="newLastName" placeholder="Въведете фамилия">
+			<label for="role">Роля</label>
+			<select class="form-control" name="role" [(ngModel)]="newRole">
+				<option value="student">Ученик</option>
+				<option value="teacher">Учител</option>
+				<option value="admin">Администратор</option>
+			</select>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" (click)="updateUser();modal.close('Close click')">Готово</button>
+		<button type="button" class="btn btn-light" (click)="modal.close('Close click')">Отказ</button>
+	</div>
+</ng-template>

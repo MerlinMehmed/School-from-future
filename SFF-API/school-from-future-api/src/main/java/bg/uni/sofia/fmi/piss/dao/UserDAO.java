@@ -4,16 +4,20 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import bg.uni.sofia.fmi.piss.data.RegisterData;
+import bg.uni.sofia.fmi.piss.data.UserData;
 import bg.uni.sofia.fmi.piss.dto.Student;
 import bg.uni.sofia.fmi.piss.dto.User;
 
 public class UserDAO {
+	private static final String ALL_USERS = "SELECT first_name, last_name, email, role FROM USER;";
 	private static final String FIND_USER = "SELECT * FROM USER WHERE email=? AND pass=?";
 	private static final String FIND_USER_DATA = "SELECT * FROM USER WHERE email=?";
 	private static final String FIND_USER_NAMES = "SELECT first_name, last_name FROM USER WHERE email=?";
@@ -22,6 +26,8 @@ public class UserDAO {
 	private static final String INSERT_STUDENT = "INSERT INTO student(email, class, class_number) VALUES(?,?,?);";
 	private static final String INSERT_ADMIN = "INSERT INTO admin(email) VALUES(?);";
 	private static final String INSERT_TEACHER = "INSERT INTO teacher(email) VALUES(?);";
+	private static final String DELETE_USER = "DELETE FROM user WHERE email = ?";
+	private static final String UPDATE_ROLE = "UPDATE user SET first_name=?, last_name=?, email=?, role=? WHERE email=?";
 
 	@Autowired
 	private DataSource dataSource;
@@ -45,10 +51,42 @@ public class UserDAO {
 						rs.getString("role"));
 			}
 		} catch (final SQLException e) {
-			System.out.println("SQL exception in getting role");
+			System.out.println("SQL exception in getting user");
 			e.printStackTrace();
 		}
 		return user;
+	}
+
+	public List<User> getUsers() {
+		final List<User> users = new ArrayList<>();
+		try (Connection conn = dataSource.getConnection()) {
+			final PreparedStatement ps = conn.prepareStatement(ALL_USERS);
+			final ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				users.add(new User(rs.getString("first_name"), rs.getString("last_name"), rs.getString("email"), "",
+						rs.getString("role")));
+			}
+		} catch (final SQLException e) {
+			System.out.println("SQL exception in getting users");
+			e.printStackTrace();
+		}
+		return users;
+	}
+
+	public List<UserData> getChatUsers() {
+		final List<UserData> users = new ArrayList<>();
+		try (Connection conn = dataSource.getConnection()) {
+			final PreparedStatement ps = conn.prepareStatement(ALL_USERS);
+			final ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				users.add(new UserData(rs.getString("first_name").concat(" ").concat(rs.getString("last_name")),
+						rs.getString("email")));
+			}
+		} catch (final SQLException e) {
+			System.out.println("SQL exception in getting users");
+			e.printStackTrace();
+		}
+		return users;
 	}
 
 	public User getUserData(String email) {
@@ -66,6 +104,32 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 		return user;
+	}
+
+	public void deleteUser(String email) {
+		try (Connection conn = dataSource.getConnection()) {
+			final PreparedStatement ps = conn.prepareStatement(DELETE_USER);
+			ps.setString(1, email);
+			ps.executeUpdate();
+		} catch (final SQLException e) {
+			System.out.println("SQL exception in getting deleting user");
+			e.printStackTrace();
+		}
+	}
+
+	public void updateUser(String prevEmail, String firstName, String lastName, String email, String role) {
+		try (Connection conn = dataSource.getConnection()) {
+			final PreparedStatement ps = conn.prepareStatement(UPDATE_ROLE);
+			ps.setString(1, firstName);
+			ps.setString(2, lastName);
+			ps.setString(3, email);
+			ps.setString(4, role);
+			ps.setString(5, prevEmail);
+			ps.executeUpdate();
+		} catch (final SQLException e) {
+			System.out.println("SQL exception in getting updating role");
+			e.printStackTrace();
+		}
 	}
 
 	public Student getStudentData(String email) {

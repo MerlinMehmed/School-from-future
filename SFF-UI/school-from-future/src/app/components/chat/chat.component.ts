@@ -43,7 +43,7 @@ export class ChatComponent implements OnInit {
   }
 
   private getActiveUsers() {
-    this.loginService.getActiveUsers().subscribe(res => {
+    this.loginService.getChatUsers().subscribe(res => {
       console.log(res);
       this.activeUsers = res;
       let thisUser = this.loginService.getLoginUser().email;

@@ -14,7 +14,7 @@ export class LoginService {
 
   private loginUrl = environment.url + '/login';
   private logoutUrl = environment.url + '/logout';
-  private activeUsersUrl = environment.url + '/active-users';
+  private chatUsersUrl = environment.url + '/chat-users';
 
   constructor(private http: HttpClient) { }
 
@@ -30,8 +30,8 @@ export class LoginService {
     return this.http.post(this.logoutUrl, this.getLoginUser());
   }
 
-  getActiveUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.activeUsersUrl);
+  getChatUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.chatUsersUrl);
   }
 
 }

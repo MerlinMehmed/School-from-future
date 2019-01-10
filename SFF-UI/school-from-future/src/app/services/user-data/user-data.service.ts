@@ -11,8 +11,9 @@ import { UserData } from 'src/app/model/UserData';
 
 export class UserDataService {
 
-  private allUsersUrl = environment.url + '/all-users';
+  private allUsersUrl = environment.url + '/users';
   private removeUserUrl = environment.url + '/delete-user';
+  private updateUserUrl = environment.url + '/update-user';
 
   constructor(private http: HttpClient) { }
 
@@ -22,6 +23,17 @@ export class UserDataService {
   }
 
   deleteUser(email: string): Observable<any> {
-    return this.http.put(this.removeUserUrl, UserData);
+    return this.http.post(this.removeUserUrl, email);
+  }
+
+  updateUser(prevEmail: string, firstName: string, lastName: string, email: string, role:string): Observable<any> {
+    var data = {
+      prevEmail: prevEmail,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      role: role
+    }
+    return this.http.post(this.updateUserUrl, data);
   }
 }
