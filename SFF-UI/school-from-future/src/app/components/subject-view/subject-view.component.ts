@@ -14,7 +14,7 @@ export class SubjectViewComponent implements OnInit {
 
   subjects: string[];
   students: any[];
-  grades: number[] = [4,5,6];
+  grades: any[][] = [];
   name: string;
   email: string;
   subject: number;
@@ -49,17 +49,22 @@ export class SubjectViewComponent implements OnInit {
     this.studentService.getStudents(this.subject).subscribe(result => {
       console.log(result);
       this.students = result;
+      for (var i = 0; i < this.students.length; i++) {
+        this.getStudentGrades(this.students[i].email, this.subject, i);
+      }
     });
   }
 
-  getStudentGrades() {
-    this.getStudentDataService.findStudentGrades(this.name, this.email, this.subject).subscribe(result => {
+  getStudentGrades(student: string, subject, i: number) {
+    var name = student.split("@")[0];
+    var email = student.split("@")[1].replace(/\./g, ",");
+    this.getStudentDataService.findStudentGrades(name, email, subject).subscribe(result => {
       console.log(result);
-      this.grades = result;
+      this.grades[student] = result;
     });
   }
 
   open(content) {
-    this.modalService.open(content, { centered: true });
+    // this.modalService.open(content, { centered: true });
   }
 }

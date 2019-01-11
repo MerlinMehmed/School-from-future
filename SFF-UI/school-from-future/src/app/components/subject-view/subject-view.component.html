@@ -32,7 +32,7 @@
 			<!-- <td [(ngModel)]="email">{{s.email}}</td> -->
 			<td>{{s.grade}}</td>
 			<td>{{s.gradeNumber}}</td>
-			<td> <span *ngFor="let g of grades">{{g}} </span></td>
+			<td> <span *ngFor="let g of grades[s.email]">{{g}} </span></td>
 			<td>
 				<button type="button" (click)="open(content)">
 					<i class="fas fa-edit" aria-hidden="true">

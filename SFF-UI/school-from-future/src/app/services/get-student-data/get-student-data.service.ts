@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { headersToString } from 'selenium-webdriver/http';
 import { Student } from 'src/app/model/Student';
 
 @Injectable({

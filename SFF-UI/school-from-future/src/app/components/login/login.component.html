@@ -1,21 +1,30 @@
 <body>
 	<div id="wrapper">
-	  <h5 class="pt-3 px-3" id="loginModalTitle">Вход</h5>
-	  <div class="p-3">
-		<form class="justify-content-center" id="login">
-		  <div class="pb-1">
-			<label for="loginInputUsername">E-mail</label>
-			<input type="text" class="form-control" name="loginInputUsername" id="loginInputUsername" [(ngModel)]="username" #loginInputUsername="ngModel"
-			  placeholder="Въведете e-mail" autofocus required>
-		  </div>
-		  <div class="pb-1">
-			<label for="loginInputPassword">Парола</label>
-			<input type="password" class="form-control" name="loginInputPassword" id="loginInputPassword" [(ngModel)]="password" #loginInputUsername="ngModel"
-			  placeholder="Въведете парола" required>
-		  </div>
-		  <button (click)="login();" class="btn btn-outline-info btn-primary">Вход</button>
-		  <button (click)="routeToIndex()" class="btn btn-outline-info btn-primary" name="cancel">Отказ</button>
-		</form>
-	  </div>
+		<h5 class="pt-3 px-3" id="loginModalTitle">Вход</h5>
+		<div class="p-3">
+			<form class="justify-content-center" id="login">
+				<div class="pb-1">
+					<label for="loginInputUsername">E-mail</label>
+					<input type="text" class="form-control" name="loginInputUsername" id="loginInputUsername" [(ngModel)]="username"
+					 #loginInputUsername="ngModel" placeholder="Въведете e-mail" autofocus required>
+				</div>
+				<div *ngIf="loginInputUsername.invalid && (loginInputUsername.dirty || loginInputUsername.touched)" class="alert alert-danger">
+					Въведете потребителско име
+				</div>
+				<div class="pb-1">
+					<label for="loginInputPassword">Парола</label>
+					<input type="password" class="form-control" name="loginInputPassword" id="loginInputPassword" [(ngModel)]="password"
+					 #loginInputPassword="ngModel" placeholder="Въведете парола" required>
+				</div>
+				<div *ngIf="loginInputPassword.invalid && (loginInputPassword.dirty || loginInputPassword.touched)" class="alert alert-danger">
+					Въведете парола
+				</div>
+				<div *ngIf="!success" class="alert alert-danger">
+					Грешно потребителско име или парола
+				</div>
+				<button (click)="login();" class="btn btn-outline-info btn-primary">Вход</button>
+				<button (click)="routeToIndex()" class="btn btn-outline-info btn-primary" name="cancel">Отказ</button>
+			</form>
+		</div>
 	</div>
 </body>
