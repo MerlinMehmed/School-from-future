@@ -1,49 +1,68 @@
-<body>
-	<div id="wrapper">
-	  <h5 class="pt-3 px-3" id="registerModalTitle">Регистрация</h5>
-	  <div class="p-3">
-		<form class="justify-content-center" id="login">
-		<div class="pb-1">
-			<label for="registerInputUsername">Име</label>
-			<input type="text" class="form-control" name="registerInputFirstName" id="registerInputFirstName" [(ngModel)]="first" #registerInputFirstName="ngModel"
-			  placeholder="Въведете име" autofocus required>
-		  </div>
-		  <div class="pb-1">
-			<label for="registerInputFirstName">Фамилия</label>
-			<input type="text" class="form-control" name="registerInputLastName" id="registerInputLastName" [(ngModel)]="last" #registerInputLastName="ngModel"
-			  placeholder="Въведете фамилия" autofocus required>
-		  </div>
-		  <div class="pb-1">
-			<label for="registerInputLastName">E-mail</label>
-			<input type="text" class="form-control" name="registerInputUsername" id="registerInputUsername" [(ngModel)]="username" #registerInputUsername="ngModel"
-			  placeholder="Въведете e-mail" autofocus required>
-		  </div>
-		  <div class="pb-1">
-			<label for="registerInputPassword">Парола</label>
-			<input type="password" class="form-control" name="registerInputPassword" id="registerInputPassword" [(ngModel)]="password" #registerInputUsername="ngModel"
-			  placeholder="Въведете парола" required>
-		  </div>
-		  <div class="pb-1">
-			<label for="registerInputRole">Роля</label>
-				<select name="registerInputRole" id="registerInputRole" [(ngModel)]="userRole" #registerInputRole="ngModel">
+<div id="wrapper">
+	<h5 class="pt-3 px-3" id="registerModalTitle">Регистрация</h5>
+	<div class="p-3">
+		<form class="justify-content-center" id="login" #registerForm="ngForm">
+			<div class="pb-1">
+				<label for="registerInputUsername">Име</label>
+				<input type="text" class="form-control" name="registerInputFirstName" id="registerInputFirstName" [(ngModel)]="first"
+				 #registerInputFirstName="ngModel" placeholder="Въведете име" autofocus required>
+			</div>
+			<div *ngIf="registerInputFirstName.invalid && (registerInputFirstName.dirty || registerInputFirstName.touched)"
+			 class="alert alert-danger">
+				Въведете име
+			</div>
+			<div class="pb-1">
+				<label for="registerInputFirstName">Фамилия</label>
+				<input type="text" class="form-control" name="registerInputLastName" id="registerInputLastName" [(ngModel)]="last"
+				 #registerInputLastName="ngModel" placeholder="Въведете фамилия" autofocus required>
+			</div>
+			<div *ngIf="registerInputLastName.invalid && (registerInputLastName.dirty || registerInputLastName.touched)" class="alert alert-danger">
+				Въведете фамилия
+			</div>
+			<div class="pb-1">
+				<label for="registerInputLastName">E-mail</label>
+				<input type="text" class="form-control" name="registerInputEmail" id="registerInputEmail" [(ngModel)]="username"
+				 #registerInputEmail="ngModel" placeholder="Въведете e-mail" autofocus required>
+			</div>
+			<div *ngIf="registerInputEmail.invalid && (registerInputEmail.dirty || registerInputEmail.touched)" class="alert alert-danger">
+				Въведете фамилия
+			</div>
+			<div class="pb-1">
+				<label for="registerInputPassword">Парола</label>
+				<input type="password" class="form-control" name="registerInputPassword" id="registerInputPassword" [(ngModel)]="password"
+				 #registerInputPassword="ngModel" placeholder="Въведете парола" required>
+			</div>
+			<div *ngIf="registerInputPassword.invalid && (registerInputPassword.dirty || registerInputPassword.touched)" class="alert alert-danger">
+				Въведете парола
+			</div>
+			<div class="pb-1">
+				<label for="registerInputRole">Роля</label>
+				<select name="registerInputRole" id="registerInputRole" (change)="checkRole()" [(ngModel)]="userRole"
+				 #registerInputRole="ngModel">
 					<option value="student">Ученик</option>
 					<option value="teacher">Учител</option>
 					<option value="admin">Администратор</option>
 				</select>
-		  </div>
-		  <div class="pb-1">
-			<label for="registerInputClass">Клас (при регистрация на ученик)</label>
-			<input type="text" class="form-control" name="registerInputClass" id="registerInputClass" [(ngModel)]="studentGrade" #registerInputClass="ngModel"
-			  placeholder="Въведете клас">
-		  </div>
-		  <div class="pb-1">
-			<label for="registerInputClassNumber">Номер (при регистрация на ученик)</label>
-			<input type="text" class="form-control" name="registerInputClassNumber" id="registerInputClassNumber" [(ngModel)]="gradeNumber" #registerInputClassNumber="ngModel"
-			  placeholder="Въведете номер в клас">
-		  </div>
-		  <button (click)="register();" class="btn btn-outline-info btn-primary">Регистрация</button>
-		  <button (click)="routeToIndex()" class="btn btn-outline-info btn-primary" name="cancel">Отказ</button>
+			</div>
+			<div class="pb-1" *ngIf="student">
+				<label for="registerInputClass">Клас</label>
+				<input type="text" class="form-control" name="registerInputClass" id="registerInputClass" [(ngModel)]="studentGrade"
+				 #registerInputClass="ngModel" placeholder="Въведете клас">
+			</div>
+			<div class="pb-1" *ngIf="student">
+				<label for="registerInputClassNumber">Номер</label>
+				<input type="text" class="form-control" name="registerInputClassNumber" id="registerInputClassNumber" [(ngModel)]="gradeNumber"
+				 #registerInputClassNumber="ngModel" placeholder="Въведете номер в клас">
+			</div>
+			<div *ngIf="success" class="alert alert-success">
+				Успешна регистрация
+			</div>
+			<div *ngIf="registerForm.invalid" class="alert alert-danger">
+				Въведете всички данни преди да продължите
+			</div>
+			
+			<button (click)="register();" class="btn btn-outline-info btn-primary">Регистрация</button>
+			<button (click)="routeToIndex()" class="btn btn-outline-info btn-primary" name="cancel">Отказ</button>
 		</form>
-	  </div>
 	</div>
-</body>
+</div>

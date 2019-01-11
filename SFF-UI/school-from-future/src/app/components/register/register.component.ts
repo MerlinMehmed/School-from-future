@@ -17,8 +17,9 @@ export class RegisterComponent implements OnInit {
   userRole: string;
   studentGrade: string;
   gradeNumber: string;
-  
-  
+
+  success = false;
+  student = false;
 
   registerUser: RegisterData;
 
@@ -30,25 +31,33 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
+  checkRole() {
+    if (this.userRole == 'student')
+      this.student = true;
+    else
+      this.student = false; 
+  }
+
   register() {
     return this.registerService.register(this.makeRegisterData()).subscribe(registerUser => {
+      this.success = true;
       if (registerUser) {
         console.log(registerUser);
-        sessionStorage.setItem('user', JSON.stringify(registerUser));
-        this.router.navigate(['/login']);
+        // sessionStorage.setItem('user', JSON.stringify(registerUser));
+        // this.router.navigate(['/login']);
       }
     });
   }
 
   makeRegisterData(): RegisterData {
     return {
-	  firstName: this.first,
-	  lastName: this.last,
+      firstName: this.first,
+      lastName: this.last,
       email: this.username,
       pass: this.password,
-	  role: this.userRole,
-	  grade: this.studentGrade,
-	  gradeNumber: this.gradeNumber
+      role: this.userRole,
+      grade: this.studentGrade,
+      gradeNumber: this.gradeNumber
     }
   }
 

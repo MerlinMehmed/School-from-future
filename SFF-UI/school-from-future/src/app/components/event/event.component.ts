@@ -19,6 +19,8 @@ export class EventComponent implements OnInit {
   lng: number = 23.319941;
   locationChosen = false;
 
+  success=false;
+
   constructor(
     private subjectService: SchoolSubjectService,
     private eventService: EventService
@@ -34,7 +36,7 @@ export class EventComponent implements OnInit {
     let date = new Date(this.eventDate);
     date.setHours(this.eventTime.split(":")[0]);
     date.setMinutes(this.eventTime.split(":")[1]);
-    this.eventService.addEvent(this.subject, date.getTime(), this.lat, this.lng).subscribe();
+    this.eventService.addEvent(this.subject, date.getTime(), this.lat, this.lng).subscribe(()=>this.success=true);
   }
 
   changeLocation(event) {

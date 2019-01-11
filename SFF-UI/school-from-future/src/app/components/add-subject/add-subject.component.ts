@@ -19,6 +19,8 @@ export class AddSubjectComponent implements OnInit {
   schools: string[];
   teachers: any[];
 
+  success = false;
+
   constructor(
     private subjectService: SchoolSubjectService,
     private router: Router
@@ -30,7 +32,7 @@ export class AddSubjectComponent implements OnInit {
 
   add() {
     this.subjectService.addSubject(this.name, this.description, this.teacherName, this.schoolName).subscribe(
-      _ => console.log("OK")
+      _ => this.success=true
     );
   }
 

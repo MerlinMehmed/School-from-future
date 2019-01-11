@@ -1,28 +1,33 @@
-<body>	
+<body>
 	<div id="wrapper">
-	  <h5 class="pt-3 px-3">Добави учебен предмет</h5>
-	  <div class="p-3">
-		<form class="justify-content-center" id="add">
-		  <div class="pb-1">
-			<label for="subjectName">Име </label>
-			<input type="text" class="form-control" name="subjectName" id="subjectName" [(ngModel)]="name" #subjectName="ngModel"
-			  placeholder="Въведете име на учебен предмет" autofocus required>
-		  </div> 
-		  <div class="pb-1">
-			<label for="subjectDescription">Описание </label>
-			<textarea ref-textarea  class="form-control" name="subjectDescription" id="subjectDescription" 
-			[(ngModel)]="description" #subjectDescription="ngModel"
-			  placeholder="Въведете описание"></textarea>
-		  </div>
-		  <div class="pb-1">
-			<label for="teacher">Преподавател </label>
-			<select [(ngModel)]="teacherName" name="teacher">
-			  <option *ngFor="let t of teachers" [ngValue]="t.email">{{t.firstName}} {{t.lastName}}</option>
-			</select>
-		  </div>
-		  <button (click)="add();" class="btn btn-outline-info btn-primary">Добави</button>
-		  <button (click)="routeToIndex()" class="btn btn-outline-info btn-primary" name="cancel">Отказ</button>
-		</form>
-	  </div>
+		<h5 class="pt-3 px-3">Добави учебен предмет</h5>
+		<div class="p-3">
+			<form class="justify-content-center" id="add" #registerForm="ngForm">
+				<div class="pb-1">
+					<label for="subjectName">Име </label>
+					<input type="text" class="form-control" name="subjectName" id="subjectName" [(ngModel)]="name" #subjectName="ngModel"
+					 placeholder="Въведете име на учебен предмет" autofocus required>
+				</div>
+				<div *ngIf="subjectName.invalid && (subjectName.dirty || subjectName.touched)" class="alert alert-danger">
+					Въведете име
+				</div>
+				<div class="pb-1">
+					<label for="subjectDescription">Описание </label>
+					<textarea ref-textarea class="form-control" name="subjectDescription" id="subjectDescription" [(ngModel)]="description"
+					 #subjectDescription="ngModel" placeholder="Въведете описание"></textarea>
+				</div>
+				<div class="pb-1">
+					<label for="teacher">Преподавател </label>
+					<select [(ngModel)]="teacherName" name="teacher">
+						<option *ngFor="let t of teachers" [ngValue]="t.email">{{t.firstName}} {{t.lastName}}</option>
+					</select>
+				</div>
+				<div *ngIf="success" class="alert alert-success">
+					Успешно въведени данни
+				</div>
+				<button [disabled]="teacherName==undefined || name==undefined" (click)="add();" class="btn btn-outline-info btn-primary">Добави</button>
+				<button (click)="routeToIndex()" class="btn btn-outline-info btn-primary" name="cancel">Отказ</button>
+			</form>
+		</div>
 	</div>
 </body>

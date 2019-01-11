@@ -35,6 +35,12 @@ h5 {
 	width: 250px;
 }
 
+.btn[disabled] {
+	border: 2px solid #720F8F;
+	color: #720F8F;
+}
+
+
 .btn:hover {
 	color: #720F8F;
 	border: 2px solid #720F8F;

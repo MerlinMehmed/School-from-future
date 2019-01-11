@@ -24,9 +24,13 @@
 						</agm-map>
 					</div>
 				</div>
+				<div *ngIf="success" class="alert alert-success">
+					Успешно въведенa дейност
+				</div>
 				<button (click)="addEvent();" class="btn btn-outline-info btn-primary">Добави</button>
 				<button (click)="routeToIndex()" class="btn btn-outline-info btn-primary" name="cancel">Отказ</button>
 			</form>
 		</div>
 	</div>
-<body>
+
+	<body>
