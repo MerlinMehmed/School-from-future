@@ -16,16 +16,6 @@
 				Изтриване
 			</th>
 		</tr>
-		<tr>
-			<td>subject.name}}</td>
-			<td>subject.description}}</td>
-			<td>subject.teacher}}</td>
-			<td>
-				<button type="button" (click)="deleteSubject(subject.id)">
-          <i class="fa fa-trash" aria-hidden="true"></i> 
-        </button>
-			</td>
-		</tr>
 		<tr *ngFor="let subject of subjects">
 			<td>{{subject.name}}</td>
 			<td>{{subject.description}}</td>
